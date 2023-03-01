@@ -54,7 +54,7 @@ export const LoginForm = () => {
                   label="Email"
                   margin="normal"
                 />
-                {errors?.Email && <span>{errors.Email?.message || "error"}</span>}
+                {errors.Email?.message && <span>{errors.Email?.message || "error"}</span>}
                 <TextField
                   {...register("Password", {
                     required: "Required",
@@ -72,7 +72,7 @@ export const LoginForm = () => {
                   label="Password"
                   margin="normal"
                 />
-                {errors.Password && <span>{errors.Password.message}</span>}
+                {errors.Password?.message && <span>{errors.Password.message}</span>}
                 <FormControlLabel label={"Remember me"} control={<Checkbox {...register("RememberMe")} />} />
                 <NavLink to={"/passwordRecovery"}>Forgot Password?</NavLink>
                 <Button

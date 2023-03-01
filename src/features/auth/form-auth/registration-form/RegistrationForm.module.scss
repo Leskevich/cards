@@ -1,4 +1,4 @@
-@import "../../../common/scss/formStyles";
+@import "src/common/scss/formStyles";
 
 .registration{
   @include registrationClass();
@@ -13,11 +13,11 @@
     .passwordInput {
       @include inputClass();
     }
+    .repeatPasswordInput {
+      @include inputClass();
+    }
     .submitButton{
       @include submitButtonClass();
-    }
-    .forgotPass{
-      text-align: right;
     }
   }
   .toLogin{

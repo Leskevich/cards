@@ -1,5 +1,11 @@
 import React from "react";
+import { RegistrationForm } from "../form-auth/registration-form/RegistrationForm";
+import style from "./Regisrtation.module.scss";
 
 export const Registration = () => {
-  return <div>Registration</div>;
+  return (
+    <div className={style.registrationFrom}>
+      <RegistrationForm />
+    </div>
+  );
 };

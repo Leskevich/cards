@@ -39,9 +39,6 @@ export const NewPasswordForm = () => {
                     },
                   })}
                   className={style.passwordInput}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
                   variant="filled"
                   type="password"
                   label="Password"

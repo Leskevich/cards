@@ -38,9 +38,6 @@ export const PasswordRecoveryForm = () => {
                     },
                   })}
                   className={style.passwordInput}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
                   variant="filled"
                   type="email"
                   label="Email"

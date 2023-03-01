@@ -41,9 +41,6 @@ export const RegistrationForm = () => {
                     },
                   })}
                   className={style.emailInput}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
                   variant="filled"
                   label="Email"
                   margin="normal"
@@ -59,9 +56,6 @@ export const RegistrationForm = () => {
                     },
                   })}
                   className={style.passwordInput}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
                   variant="filled"
                   type="password"
                   label="Password"

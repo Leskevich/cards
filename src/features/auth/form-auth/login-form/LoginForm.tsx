@@ -5,7 +5,8 @@ import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 
@@ -47,9 +48,6 @@ export const LoginForm = () => {
                     },
                   })}
                   className={s.emailInput}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
                   variant="filled"
                   label="Email"
                   margin="normal"
@@ -64,9 +62,6 @@ export const LoginForm = () => {
                     },
                   })}
                   className={s.passwordInput}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
                   variant="filled"
                   type="password"
                   label="Password"

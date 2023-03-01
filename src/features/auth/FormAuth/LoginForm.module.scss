@@ -1,0 +1,30 @@
+@import "../../../common/scss/formStyles";
+
+.registration{
+  @include registrationClass();
+  &:first-child{
+    color: black;
+  }
+  .formContainer {
+    @include formContainerClass();
+    .emailInput {
+      @include inputClass();
+    }
+    .passwordInput {
+      @include inputClass();
+    }
+    .submitButton{
+      @include submitButtonClass();
+    }
+    .forgotPass{
+      text-align: right;
+    }
+  }
+  .toLogin{
+    @include toLoginClass();
+  }
+  .toSignIn{
+    @include toSignInClass()
+  }
+
+}

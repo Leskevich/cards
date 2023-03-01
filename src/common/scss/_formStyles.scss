@@ -1,0 +1,52 @@
+
+//mixins for all forms of App
+@mixin registrationClass{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  height: 552px;
+  width: 413px;
+  margin-top: 100px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+@mixin formContainerClass {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2px;
+  background: #fff;
+}
+@mixin inputClass{
+  min-width: 350px;
+}
+@mixin submitButtonClass {
+  background: #366EFF;
+  box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  margin-top: 50px;
+}
+@mixin toLoginClass {
+  width: 186px;
+  height: 24px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+  opacity: 0.5;
+}
+@mixin toSignInClass {
+  width: 65px;
+  height: 24px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #366EFF;
+
+}

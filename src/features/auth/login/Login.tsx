@@ -1,5 +1,11 @@
 import React from "react";
+import { LoginForm } from "../FormAuth/LoginForm";
+import style from "./Login.module.scss";
 
 export const Login = () => {
-  return <div>login</div>;
+  return (
+    <div className={style.loginContainer}>
+      <LoginForm />
+    </div>
+  );
 };

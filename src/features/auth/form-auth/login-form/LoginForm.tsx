@@ -9,26 +9,25 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
+import {isLoggedInThunk, setIsLoggedIn} from "../../AuthReducer";
+import {useAppDispatch} from "../../../../common/utils/hook/useDispatchHook";
+import {LoginPayloadType} from "../../../../api/auth-api";
 
 export const LoginForm = () => {
-  type LoginForm = {
-    Email: string;
-    Password: string;
-    RememberMe: boolean;
-  };
+  const dispatch = useAppDispatch()
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm<LoginForm>({
+  } = useForm<LoginPayloadType>({
     defaultValues: {
-      RememberMe: false,
+      rememberMe: false,
     },
     mode: "onBlur",
   });
-  const onSubmit: SubmitHandler<LoginForm> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<LoginPayloadType> = (data) => {
+    dispatch(isLoggedInThunk(data))
     reset();
   };
   return (
@@ -40,7 +39,7 @@ export const LoginForm = () => {
             <FormControl>
               <FormGroup>
                 <TextField
-                  {...register("Email", {
+                  {...register("email", {
                     required: "Required",
                     pattern: {
                       value: /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/,
@@ -52,9 +51,9 @@ export const LoginForm = () => {
                   label="Email"
                   margin="normal"
                 />
-                {errors.Email?.message && <span>{errors.Email?.message || "error"}</span>}
+                {errors.email?.message && <span>{errors.email?.message || "error"}</span>}
                 <TextField
-                  {...register("Password", {
+                  {...register("password", {
                     required: "Required",
                     minLength: {
                       value: 4,
@@ -67,8 +66,8 @@ export const LoginForm = () => {
                   label="Password"
                   margin="normal"
                 />
-                {errors.Password?.message && <span>{errors.Password.message}</span>}
-                <FormControlLabel label={"Remember me"} control={<Checkbox {...register("RememberMe")} />} />
+                {errors.password?.message && <span>{errors.password.message}</span>}
+                <FormControlLabel label={"Remember me"} control={<Checkbox {...register("rememberMe")} />} />
                 <NavLink to={"/passwordRecovery"}>Forgot Password?</NavLink>
                 <Button
                   disabled={!isValid}

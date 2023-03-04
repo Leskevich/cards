@@ -1,6 +1,6 @@
 
 //mixins for all forms of App
-@mixin registrationClass{
+@mixin authParentClass {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -48,5 +48,42 @@
   text-align: center;
   text-decoration-line: underline;
   color: #366EFF;
+}
 
+@mixin circleImageBlock {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  margin-bottom: -30px;
+}
+
+@mixin infoTextAuth {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+  opacity: 0.5;
+  margin-top: -30px;
+  max-width:328px ;
+}
+
+@mixin authTitle {
+  width: 240px;
+  height: 27px;
+  font-family: 'Montserrat' sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 27px;
+  text-align: center;
+  color: #000000;
+  margin: 0;
 }

@@ -1,15 +1,21 @@
-import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
-import { AppReducer } from "./AppReducer";
+import {combineReducers} from "redux";
+import { appReducer } from "./AppReducer";
 import thunk from "redux-thunk";
 import { ProfileReducer } from "../features/profile/ProfileReducer";
-import { AuthReducer } from "../features/auth/AuthReducer";
+import { authReducer } from "../features/auth/AuthReducer";
+import {configureStore} from "@reduxjs/toolkit";
 
 const RootReducer = combineReducers({
-  app: AppReducer,
+  app: appReducer,
   profile: ProfileReducer,
-  auth: AuthReducer,
+  auth: authReducer,
 });
 
-export const store = legacy_createStore(RootReducer, applyMiddleware(thunk));
+// export const _store = legacy_createStore(RootReducer, applyMiddleware(thunk));
+
+export const store = configureStore({
+  reducer: RootReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunk)
+})
 
 export type StateType = ReturnType<typeof RootReducer>;

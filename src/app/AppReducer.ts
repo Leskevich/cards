@@ -1,15 +1,35 @@
-type appReducerType = typeof appReducerState;
-const appReducerState = {};
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-export const AppReducer = (state: appReducerType = appReducerState, action: AppReducerActionType): appReducerType => {
-  switch (action) {
-    default:
-      return state;
+const initialState: InitialStateType = {
+  status: 'idle',
+  error: null,
+  isInitialized: false
+}
+
+const slice = createSlice({
+  name: "app",
+  initialState: initialState,
+  reducers:{
+    setAppErrorAC(state,action:PayloadAction<{error:string | null }>){
+      state.error = action.payload.error
+    },
+    setAppStatusAC(state,action:PayloadAction<{ status: RequestStatusType }>){
+      state.status = action.payload.status
+    },
+    setIsInitializedAC(state,action:PayloadAction<{isInitialized: boolean}>){
+      state.isInitialized = action.payload.isInitialized
+    }
   }
-};
+})
+export const appReducer = slice.reducer
+export const {setAppErrorAC, setAppStatusAC, setIsInitializedAC} = slice.actions
 
-//TypeAction
-type AppReducerActionType = any;
-//Action
 
-//Thunk
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+export type InitialStateType = {
+  // происходит ли сейчас взаимодействие с сервером
+  status: RequestStatusType
+  // если ошибка какая-то глобальная произойдёт - мы запишем текст ошибки сюда
+  error: string | null
+  isInitialized: boolean
+}

@@ -13,6 +13,9 @@ export const authAPI = {
     logOut(){
         // pure object {} like payload
         return instance.delete("auth/me", {})
+    },
+    register(payload: RegisterPayloadType){
+        return instance.post("auth/register", payload)
     }
 }
 
@@ -20,4 +23,8 @@ export type LoginPayloadType = {
     email: string,
     password: string,
     rememberMe: boolean
+}
+export type RegisterPayloadType = {
+    email: string
+    password: string
 }

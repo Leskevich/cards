@@ -15,7 +15,7 @@ export const Profile = () => {
     return <div className={style.profileParent}>
             <p className={style.title}>Personal Information</p>
             <div className={style.avatar} style={{backgroundImage:` url("${initialProps.imageUrl}")`}}>
-                <div className={style.changeAvatar} style={{backgroundImage:`url(${changeAvatarImage})`}}> </div>
+                {/*<div className={style.changeAvatar} style={{backgroundImage:`url(${changeAvatarImage})`}}> </div>*/}
             </div>
             <EditableSpan value={"User Name"} onChange={() => {}}/>
             <p className={style.email}>{initialProps.emailAddres}</p>

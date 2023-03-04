@@ -1,6 +1,6 @@
 import React from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
-import {Registration} from "../../features/auth/registration/Registracion";
+import {Registration} from "../../features/auth/registration/Registration";
 import {Profile} from "../../features/profile/Profile";
 import {Error404} from "../../common/components/error404/Error404";
 import {PasswordRecovery} from "../../features/auth/forgot-password/passwordRecovery/PasswordRecovery";

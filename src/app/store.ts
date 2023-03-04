@@ -1,9 +1,10 @@
-import {combineReducers} from "redux";
+import {AnyAction, combineReducers} from "redux";
 import { appReducer } from "./AppReducer";
-import thunk from "redux-thunk";
+import thunkMiddleware, {ThunkDispatch} from "redux-thunk";
 import { ProfileReducer } from "../features/profile/ProfileReducer";
-import { authReducer } from "../features/auth/AuthReducer";
+import { authReducer } from "../features/auth/authReducer";
 import {configureStore} from "@reduxjs/toolkit";
+import {useDispatch} from "react-redux";
 
 const RootReducer = combineReducers({
   app: appReducer,
@@ -11,11 +12,13 @@ const RootReducer = combineReducers({
   auth: authReducer,
 });
 
-// export const _store = legacy_createStore(RootReducer, applyMiddleware(thunk));
-
 export const store = configureStore({
   reducer: RootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunk)
+  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware)
 })
+
+export const useAppDispatch:() => AppDispatch=useDispatch
+export type AppDispatch = typeof store.dispatch
+// export type AppThunkDispatch = ThunkDispatch<StateType, unknown, AnyAction>
 
 export type StateType = ReturnType<typeof RootReducer>;

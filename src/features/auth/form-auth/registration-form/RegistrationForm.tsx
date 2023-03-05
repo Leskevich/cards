@@ -13,11 +13,11 @@ import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import {registerTC} from "../../authReducer";
-import {useDispatch} from "react-redux";
 import {useAppDispatch} from "../../../../app/store";
 import {Navigate} from "react-router-dom";
 import {ErrorSnackbar} from "../../../../common/components/ErrorSnackbar/ErrorSnackbar";
 import {useAppSelector} from "../../../../common/utils/hook/useSelectHook";
+import {PATH} from "../../../../common/constans/path";
 
 export type RegistrationFormType = {
   email: string;
@@ -53,7 +53,7 @@ export const RegistrationForm = () => {
   };
 
   if (isRegister){
-    return <Navigate to={ '/profile'}/>
+    return <Navigate to={PATH.LOGIN}/>
   }
 
   return (

@@ -11,12 +11,13 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
 import { Navigate, NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../../common/hook/useDispatchHook";
-import { login } from "../AuthSlice";
+
 import { useAppSelector } from "../../../common/hook/useSelectHook";
+import { login } from "../auth-slice";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
-  const isLoginIn = useAppSelector((state) => state.auth.isLoginIn);
+  const isLoginIn = useAppSelector((state) => state.auth.isLoggedIn);
   type LoginForm = {
     email: string;
     password: string;
@@ -40,7 +41,7 @@ export const Login = () => {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-  if (isLoginIn) return <Navigate to={"/profile"} />;
+  if (isLoginIn) return <Navigate to={"/Profile"} />;
   return (
     <div>
       <div className={style.formContainer}>

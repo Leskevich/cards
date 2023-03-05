@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Dispatch } from "redux";
 import { authAPI, loginResponseType, RegisterPayloadType } from "../../api/auth-api";
 import { setAppErrorAC, setAppStatusAC, setIsInitializedAC } from "../../app/app-reducer";
-import { setProfile } from "../Profile/profile-reducer";
+import { setProfile } from "../Profile/profile-slice";
 import { errorResponse } from "../../common/utils/errorResponse/errorResponse";
 import { ErrorNetwork } from "../../common/utils/ErrorNetwork";
 

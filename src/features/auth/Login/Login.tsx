@@ -72,7 +72,7 @@ export const Login = () => {
               {...register("password", {
                 required: "Required",
                 minLength: {
-                  value: 4,
+                  value: 7,
                   message: "password must be at least 8 characters",
                 },
               })}

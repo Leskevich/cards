@@ -67,7 +67,6 @@
 }
 
 @mixin infoTextAuth {
-  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -81,7 +80,6 @@
 @mixin authTitle {
   width: 240px;
   height: 27px;
-  font-family: 'Montserrat' sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 22px;

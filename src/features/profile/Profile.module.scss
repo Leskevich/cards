@@ -1,0 +1,37 @@
+@import "src/common/scss/formStyles";
+
+.profileParent {
+  @include authParentClass();
+  width: 413px;
+  height: 408px;
+  padding: 20px;
+  .title{
+    @include authTitle()
+  }
+  .image{
+    @include circleImageBlock();
+    .changeAvatar{
+      box-sizing: border-box;
+      position: relative;
+      width: 32px;
+      height: 32px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      &:hover{
+        border-radius: 100%;
+        opacity: 0.5;
+      }
+    }
+  }
+  .info{
+    @include infoTextAuth()
+  }
+  &:nth-child(3){
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}

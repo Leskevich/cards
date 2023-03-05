@@ -1,7 +1,10 @@
 @import "src/common/scss/formStyles";
 
 .registration{
-  @include registrationClass();
+  h2{
+    margin: 35px 0 42px 0;
+  }
+  @include authParentClass();
   &:first-child{
     color: black;
   }

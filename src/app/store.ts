@@ -1,19 +1,23 @@
-import { combineReducers } from "redux";
-import { AppReducer } from "./AppReducer";
+import {combineReducers} from "redux";
+import { appReducer } from "./appReducer";
 import thunkMiddleware from "redux-thunk";
 import { ProfileReducer } from "../features/profile/ProfileReducer";
-import { AuthReducer } from "../features/auth/AuthReducer";
-import { configureStore } from "@reduxjs/toolkit";
+import { authReducer } from "../features/auth/authReducer";
+import {configureStore} from "@reduxjs/toolkit";
+import {useDispatch} from "react-redux";
 
-const RootReducer = combineReducers({
-  app: AppReducer,
+const rootReducer = combineReducers({
+  app: appReducer,
   profile: ProfileReducer,
-  auth: AuthReducer,
+  auth: authReducer,
 });
 
 export const store = configureStore({
-  reducer: RootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(thunkMiddleware),
-});
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware)
+})
 
-export type StateType = ReturnType<typeof RootReducer>;
+export const useAppDispatch:() => AppDispatch=useDispatch
+export type AppDispatch = typeof store.dispatch
+
+export type StateType = ReturnType<typeof rootReducer>;

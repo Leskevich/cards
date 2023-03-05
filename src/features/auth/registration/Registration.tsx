@@ -4,7 +4,7 @@ import style from "./Regisrtation.module.scss";
 
 export const Registration = () => {
   return (
-    <div className={style.registrationFrom}>
+    <div className={style.registrationForm}>
       <RegistrationForm />
     </div>
   );

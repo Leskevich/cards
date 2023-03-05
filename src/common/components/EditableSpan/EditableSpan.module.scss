@@ -1,0 +1,12 @@
+.buttonParent {
+  display: inline-block;
+  border-bottom: #366EFF 2px solid;
+  padding-bottom: 2px;
+
+  &:last-child {
+    position: relative;
+    top: 13px
+
+  }
+
+}

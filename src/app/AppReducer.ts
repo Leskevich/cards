@@ -1,15 +1,17 @@
-type appReducerType = typeof appReducerState;
-const appReducerState = {};
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export const AppReducer = (state: appReducerType = appReducerState, action: AppReducerActionType): appReducerType => {
-  switch (action) {
-    default:
-      return state;
-  }
+const initialState = {
+  error: "" as string | null,
 };
+const appSlice = createSlice({
+  name: "app",
+  initialState,
+  reducers: {
+    setError: (state, action: PayloadAction<{ error: string | null }>) => {
+      state.error = action.payload.error;
+    },
+  },
+});
 
-//TypeAction
-type AppReducerActionType = any;
-//Action
-
-//Thunk
+export const appReducer = appSlice.reducer;
+export const { setError } = appSlice.actions;

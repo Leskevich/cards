@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
-import { AppReducer } from "./AppReducer";
 import thunkMiddleware from "redux-thunk";
 import { ProfileReducer } from "../features/profile/ProfileReducer";
-import { AuthReducer } from "../features/auth/AuthReducer";
+import { authReducer } from "../features/auth/AuthSlice";
 import { configureStore } from "@reduxjs/toolkit";
+import { appReducer } from "./AppReducer";
 
 const RootReducer = combineReducers({
-  app: AppReducer,
+  app: appReducer,
   profile: ProfileReducer,
-  auth: AuthReducer,
+  auth: authReducer,
 });
 
 export const store = configureStore({

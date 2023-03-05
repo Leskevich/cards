@@ -9,7 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
-import {isLoggedInThunk, setIsLoggedIn} from "../../authReducer";
+import {isLoggedInThunk} from "../../auth-reducer";
 import {useAppDispatch} from "../../../../common/utils/hook/useDispatchHook";
 import {LoginPayloadType} from "../../../../api/auth-api";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { NewPasswordForm } from "../../form-auth/new-password-form/NewPasswordForm";
+import { NewPasswordForm } from "../../form-auth/NewPasswordForm/NewPasswordForm";
 import style from "./NewPassword.module.scss";
 
 export const NewPassword = () => {

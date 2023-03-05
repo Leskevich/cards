@@ -26,9 +26,9 @@
   }
   .info{
     @include infoTextAuth()
+
   }
   &:nth-child(3){
-    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;

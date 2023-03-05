@@ -14,6 +14,12 @@ export const authAPI = {
         // pure object {} like payload
         return instance.delete("auth/me", {})
     },
+    me(){
+       return instance.post("auth/me", {})
+    },
+    setNewUserName(title: string){
+        return instance.put("auth/me", {name: title})
+    },
     register(payload: RegisterPayloadType){
         return instance.post("auth/register", payload)
     }

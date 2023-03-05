@@ -12,7 +12,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
-import {registerTC} from "../../authReducer";
+import {registerTC} from "../../auth-reducer";
 import {useAppDispatch} from "../../../../app/store";
 import {Navigate} from "react-router-dom";
 import {ErrorSnackbar} from "../../../../common/components/ErrorSnackbar/ErrorSnackbar";
@@ -36,7 +36,6 @@ export const RegistrationForm = () => {
   } = useForm<RegistrationFormType>({mode: "onBlur"});
 
   const onSubmit: SubmitHandler<RegistrationFormType> = (data) => {
-    console.log(data);
     dispatch(registerTC(data))
     reset();
   };

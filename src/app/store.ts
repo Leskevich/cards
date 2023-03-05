@@ -1,14 +1,14 @@
 import {combineReducers} from "redux";
-import { appReducer } from "./appReducer";
+import { appReducer } from "./app-reducer";
 import thunkMiddleware from "redux-thunk";
-import { ProfileReducer } from "../features/profile/ProfileReducer";
-import { authReducer } from "../features/auth/authReducer";
+import {profileReducer} from "../features/profile/profile-reducer";
+import { authReducer } from "../features/auth/auth-reducer";
 import {configureStore} from "@reduxjs/toolkit";
 import {useDispatch} from "react-redux";
 
 const rootReducer = combineReducers({
   app: appReducer,
-  profile: ProfileReducer,
+  profile: profileReducer,
   auth: authReducer,
 });
 
@@ -21,3 +21,6 @@ export const useAppDispatch:() => AppDispatch=useDispatch
 export type AppDispatch = typeof store.dispatch
 
 export type StateType = ReturnType<typeof rootReducer>;
+
+//@ts-ignore
+window.store = store

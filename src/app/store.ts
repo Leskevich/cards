@@ -1,13 +1,13 @@
 import {combineReducers} from "redux";
-import { appReducer } from "./AppReducer";
+import { appReducer } from "./app-reducer";
 import thunk from "redux-thunk";
-import { ProfileReducer } from "../features/profile/ProfileReducer";
-import { authReducer } from "../features/auth/AuthReducer";
+import {profileReducer} from "../features/profile/profile-reducer";
+import { authReducer } from "../features/auth/auth-reducer";
 import {configureStore} from "@reduxjs/toolkit";
 
 const RootReducer = combineReducers({
   app: appReducer,
-  profile: ProfileReducer,
+  profile: profileReducer,
   auth: authReducer,
 });
 
@@ -17,5 +17,6 @@ export const store = configureStore({
   reducer: RootReducer,
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunk)
 })
+
 
 export type StateType = ReturnType<typeof RootReducer>;

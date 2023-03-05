@@ -1,5 +1,5 @@
 import React from "react";
-import { RegistrationForm } from "../form-auth/registration-form/RegistrationForm";
+import { RegistrationForm } from "../form-auth/RegistrationForm/RegistrationForm";
 import style from "./Regisrtation.module.scss";
 
 export const Registration = () => {

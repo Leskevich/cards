@@ -30,6 +30,7 @@ export const RegistrationForm = () => {
     reset,
     formState: {errors, isValid},
     handleSubmit,
+    watch
   } = useForm<RegistrationFormType>({mode: "onBlur"});
 
   const onSubmit: SubmitHandler<RegistrationFormType> = (data) => {
@@ -76,6 +77,7 @@ export const RegistrationForm = () => {
                   />
                   {errors.email?.message && <span style={{color: 'red'}}>{errors.email.message}</span>}
                 </FormControl>
+
                 <FormControl className={style.emailInput} variant="filled">
                   <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
                   <FilledInput
@@ -126,6 +128,11 @@ export const RegistrationForm = () => {
                       minLength: {
                         value: 4,
                         message: "Need more than 4 characters",
+                      },
+                      validate: (val: string) => {
+                        if (watch('password') != val) {
+                          return "Your passwords don't match";
+                        }
                       },
                     })}
                   />

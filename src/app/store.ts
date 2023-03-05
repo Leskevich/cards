@@ -1,10 +1,10 @@
 import {combineReducers} from "redux";
-import { appReducer } from "./AppReducer";
+import { appReducer } from "./appReducer";
 import thunkMiddleware from "redux-thunk";
 import { ProfileReducer } from "../features/profile/ProfileReducer";
 import { authReducer } from "../features/auth/authReducer";
 import {configureStore} from "@reduxjs/toolkit";
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -19,6 +19,5 @@ export const store = configureStore({
 
 export const useAppDispatch:() => AppDispatch=useDispatch
 export type AppDispatch = typeof store.dispatch
-export const useAppSelector: TypedUseSelectorHook<StateType> = useSelector
 
 export type StateType = ReturnType<typeof rootReducer>;

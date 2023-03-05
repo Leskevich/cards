@@ -14,8 +14,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import {registerTC} from "../../authReducer";
 import {useDispatch} from "react-redux";
-import {useAppDispatch, useAppSelector} from "../../../../app/store";
+import {useAppDispatch} from "../../../../app/store";
 import {Navigate} from "react-router-dom";
+import {ErrorSnackbar} from "../../../../common/components/ErrorSnackbar/ErrorSnackbar";
+import {useAppSelector} from "../../../../common/utils/hook/useSelectHook";
 
 export type RegistrationFormType = {
   email: string;
@@ -56,6 +58,7 @@ export const RegistrationForm = () => {
 
   return (
     <div className={style.registration}>
+      <ErrorSnackbar/>
       <h2>Sign Up</h2>
       <Grid container justifyContent={"center"} className={style.formContainer}>
         <Grid item justifyContent={"center"}>
@@ -98,8 +101,8 @@ export const RegistrationForm = () => {
                     {...register("password", {
                       required: "Password is required",
                       minLength: {
-                        value: 4,
-                        message: "Need more than 4 characters",
+                        value: 8,
+                        message: "Need more than 8 characters",
                       },
                     })}
                   />
@@ -126,8 +129,8 @@ export const RegistrationForm = () => {
                     {...register("confirmPassword", {
                       required: "Password is required",
                       minLength: {
-                        value: 4,
-                        message: "Need more than 4 characters",
+                        value: 8,
+                        message: "Need more than 8 characters",
                       },
                       validate: (val: string) => {
                         if (watch('password') != val) {

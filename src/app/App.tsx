@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { Pages } from "./pages/pages";
 import { Header } from "../features/Header/Header";
+import {ErrorSnackbar} from "../common/components/ErrorSnackbar/ErrorSnackbar";
 
 function App() {
   return (

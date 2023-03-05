@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Dispatch} from "redux";
 import {authAPI, LoginPayloadType, RegisterPayloadType} from "../../api/auth-api";
-import {setAppStatusAC} from "../../app/AppReducer";
+import {setAppErrorAC, setAppStatusAC} from "../../app/appReducer";
 
 
 const initialState = {
@@ -79,7 +79,7 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
     const error = e.response
       ? e.response.data.error
       : (e.message + ', more details in the console')
-    alert(error)
+    dispatch(setAppErrorAC({error: error}))
   }
   finally {
     dispatch(setAppStatusAC({status: "idle"}))

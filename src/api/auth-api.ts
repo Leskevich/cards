@@ -1,10 +1,5 @@
-import axios from "axios";
 import { AxiosResponse } from "axios";
-
-const instance = axios.create({
-  baseURL: "http://localhost:7542/2.0/",
-  withCredentials: true,
-});
+import { instance } from "../common/instance/instance";
 
 export const authAPI = {
   login(payload: loginResponseType) {

@@ -14,7 +14,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import {registerTC} from "../../authReducer";
 import {useDispatch} from "react-redux";
-import {useAppDispatch} from "../../../../app/store";
+import {useAppDispatch, useAppSelector} from "../../../../app/store";
+import {Navigate} from "react-router-dom";
 
 export type RegistrationFormType = {
   email: string;
@@ -23,6 +24,7 @@ export type RegistrationFormType = {
 };
 export const RegistrationForm = () => {
   const dispatch = useAppDispatch();
+  const isRegister = useAppSelector((state) => state.auth.isRegister);
   const {
     register,
     reset,
@@ -46,6 +48,10 @@ export const RegistrationForm = () => {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+
+  if (isRegister){
+    return <Navigate to={ '/profile'}/>
+  }
 
   return (
     <div className={style.registration}>

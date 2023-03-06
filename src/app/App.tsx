@@ -5,7 +5,6 @@ import { Header } from "../features/Header/Header";
 import { ErrorSnackbar } from "../common/components/ErrorSnackbar/ErrorSnackbar";
 import CircularProgress from '@mui/material/CircularProgress';
 import {useAppSelector} from "../common/hook/useSelectHook";
-import {RequestStatusType} from "./app-reducer";
 import {useAppDispatch} from "../common/hook/useDispatchHook";
 import {isAuth} from "../features/auth/auth-slice";
 
@@ -13,7 +12,6 @@ import {isAuth} from "../features/auth/auth-slice";
 function App() {
 
   const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
-  const status = useAppSelector<RequestStatusType>(state => state.app.status)
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -29,7 +27,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/*{status === 'loading' && <CircularProgress />}*/}
       <Pages />
       <ErrorSnackbar />
     </div>

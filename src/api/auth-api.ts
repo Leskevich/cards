@@ -1,5 +1,5 @@
-import { AxiosResponse } from "axios";
-import { instance } from "../common/instance/instance";
+import {AxiosResponse} from "axios";
+import {instance} from "../common/instance/instance";
 
 export const authAPI = {
   login(payload: loginResponseType) {
@@ -14,11 +14,12 @@ export const authAPI = {
     return instance.post<LoginRequestType>("auth/me", {});
   },
   setNewUserName(name: string) {
-    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", { name });
+    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", {name});
   },
   register(payload: RegisterPayloadType) {
-    return instance.post("auth/register", payload);
+    return instance.post<AxiosResponse<RegisterResponseType>>("auth/register", payload);
   },
+
 };
 //тип для регистр
 // <any, AxiosResponse<registerResponseType>, RegisterPayloadType>
@@ -49,9 +50,11 @@ type UserType = {
   updated: string;
   __v: number;
 };
-// type registerResponseType = {
-//   addedUser: UserType;
-// };
+
+type RegisterResponseType = {
+  addedUser: UserType;
+  error?: string
+};
 export type LoginRequestType = UserType & {
   token: string;
   tokenDeathTime: number;

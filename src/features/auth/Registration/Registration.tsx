@@ -137,7 +137,6 @@ export const Registration = () => {
                   <span style={{ color: "red" }}>{errors.confirmPassword.message}</span>
                 )}
               </FormControl>
-
               <Button
                 disabled={!isValid}
                 className={style.submitButton}

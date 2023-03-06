@@ -84,6 +84,7 @@ export const Registration = () => {
                 <FilledInput
                   id="filled-adornment-password1"
                   type={showPassword ? "text" : "password"}
+                  autoComplete={"on"}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton

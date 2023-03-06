@@ -76,6 +76,7 @@ export const Login = () => {
                   message: "password must be at least 8 characters",
                 },
               })}
+              autoComplete={"on"}
               type={showPassword ? "text" : "password"}
               error={!!errors}
               endAdornment={

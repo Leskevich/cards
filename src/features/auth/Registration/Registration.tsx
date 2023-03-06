@@ -61,7 +61,6 @@ export const Registration = () => {
       <Grid container justifyContent={"center"} className={style.formContainer}>
         <Grid item justifyContent={"center"}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/*<FormControl>*/}
             <FormGroup>
               <FormControl className={style.emailInput}>
                 <TextField
@@ -127,10 +126,6 @@ export const Registration = () => {
                   }
                   {...register("confirmPassword", {
                     required: "Password is required",
-                    minLength: {
-                      value: 8,
-                      message: "Need more than 8 characters",
-                    },
                     validate: (val: string) => {
                       if (watch("password") !== val) {
                         return "Your passwords don't match";
@@ -153,7 +148,6 @@ export const Registration = () => {
                 Sign Up
               </Button>
             </FormGroup>
-            {/*</FormControl>*/}
           </form>
         </Grid>
       </Grid>

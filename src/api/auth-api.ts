@@ -8,19 +8,24 @@ export const authAPI = {
       .then((res) => res.data);
   },
   logOut() {
-    return instance.delete("auth/me", {});
+    return instance.delete<{ info: string; error: string }>("auth/me");
   },
   me() {
-    return instance.post("auth/me", {});
+    return instance.post<LoginRequestType>("auth/me", {});
   },
-  setNewUserName(title: string) {
-    return instance.put("auth/me", { name: title });
+  setNewUserName(name: string) {
+    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", { name });
   },
   register(payload: RegisterPayloadType) {
     return instance.post("auth/register", payload);
   },
 };
-
+//тип для регистр
+// <any, AxiosResponse<registerResponseType>, RegisterPayloadType>
+export type ChangeNameAvatarType = {
+  name: string;
+  avatar?: string;
+};
 export type RegisterPayloadType = {
   email: string;
   password: string;
@@ -31,7 +36,8 @@ export type loginResponseType = {
   password: string;
   rememberMe: boolean;
 };
-export type LoginRequestType = {
+
+type UserType = {
   _id: string;
   email: string;
   rememberMe: boolean;
@@ -42,7 +48,17 @@ export type LoginRequestType = {
   created: string;
   updated: string;
   __v: number;
+};
+// type registerResponseType = {
+//   addedUser: UserType;
+// };
+export type LoginRequestType = UserType & {
   token: string;
   tokenDeathTime: number;
   avatar: string;
+};
+type UpdateResponseUserType = {
+  updatedUser: LoginRequestType;
+  token: string;
+  tokenDeathTime: number;
 };

@@ -131,7 +131,7 @@ export const Registration = () => {
                       message: "Need more than 8 characters",
                     },
                     validate: (val: string) => {
-                      if (watch("password") != val) {
+                      if (watch("password") !== val) {
                         return "Your passwords don't match";
                       }
                     },

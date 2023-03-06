@@ -59,11 +59,11 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
   try {
     dispatch(setAppStatusAC({ status: "loading" }));
     const res = await authAPI.register(data);
-    if (!res.data.error) {
-      dispatch(setIsRegistration({ value: true }));
-    } else {
-      alert("здесь будет handleServerAppError");
-    }
+    // if (!res.error) {
+    dispatch(setIsRegistration({ value: true }));
+    // } else {
+    alert("здесь будет handleServerAppError");
+    // }
   } catch (e: any) {
     const error = e.response ? e.response.data.error : e.message + ", more details in the console";
     dispatch(setAppErrorAC({ error: error }));

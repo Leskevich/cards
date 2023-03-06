@@ -17,7 +17,7 @@ export const authAPI = {
     return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", { name });
   },
   register(payload: RegisterPayloadType) {
-    return instance.post("auth/register", payload);
+    return instance.post<any, AxiosResponse<registerResponseType>, RegisterPayloadType>("auth/register", payload);
   },
 };
 //тип для регистр
@@ -49,9 +49,9 @@ type UserType = {
   updated: string;
   __v: number;
 };
-// type registerResponseType = {
-//   addedUser: UserType;
-// };
+type registerResponseType = {
+  addedUser: UserType;
+};
 export type LoginRequestType = UserType & {
   token: string;
   tokenDeathTime: number;

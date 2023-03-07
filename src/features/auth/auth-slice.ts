@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Dispatch } from "redux";
-import { authAPI, loginResponseType, RegisterPayloadType } from "../../api/auth-api";
+import { authAPI, forgotPasswordType, loginResponseType, RegisterPayloadType } from "../../api/auth-api";
 import { setAppErrorAC, setAppStatusAC, setIsInitializedAC } from "../../app/app-reducer";
 import { setProfile } from "../Profile/profile-slice";
 import { errorResponse } from "../../common/utils/errorResponse/errorResponse";
@@ -9,6 +9,7 @@ import { ErrorNetwork } from "../../common/utils/ErrorNetwork";
 const initialState = {
   isLoggedIn: false,
   isRegister: false,
+  token: "" as string,
 };
 
 const slice = createSlice({
@@ -28,6 +29,21 @@ export const { setIsLoggedIn, setIsRegistration } = slice.actions;
 export const authSlice = slice.reducer;
 
 //Thunks
+export const forgot = (email: string) => async (dispatch: Dispatch) => {
+  const data: forgotPasswordType = {
+    email,
+    from: "leskevichtema@gmail.com",
+    message: `<div style="background-color: lime; padding: 15px">
+password recovery link:   
+<a href="http://localhost:3000/cards#/newPassword/$token$">link</a>
+</div>`,
+  };
+  try {
+    const res = authAPI.forgotPassword(data);
+  } catch (e) {
+    ErrorNetwork(e, dispatch);
+  }
+};
 export const login = (data: loginResponseType) => async (dispatch: Dispatch) => {
   try {
     const response = await authAPI.login(data);
@@ -59,11 +75,8 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
   try {
     dispatch(setAppStatusAC({ status: "loading" }));
     const res = await authAPI.register(data);
-    // if (!res.error) {
     dispatch(setIsRegistration({ value: true }));
-    // } else {
     alert("здесь будет handleServerAppError");
-    // }
   } catch (e: any) {
     const error = e.response ? e.response.data.error : e.message + ", more details in the console";
     dispatch(setAppErrorAC({ error: error }));

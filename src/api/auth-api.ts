@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { instance } from "../common/instance/instance";
 
 export const authAPI = {
@@ -19,9 +19,16 @@ export const authAPI = {
   register(payload: RegisterPayloadType) {
     return instance.post<any, AxiosResponse<registerResponseType>, RegisterPayloadType>("auth/register", payload);
   },
+  forgotPassword(data: forgotPasswordType) {
+    return axios.post("https://neko-back.herokuapp.com/2.0/auth/forgot", data);
+  },
 };
-//тип для регистр
-// <any, AxiosResponse<registerResponseType>, RegisterPayloadType>
+
+export type forgotPasswordType = {
+  email: string;
+  from: string;
+  message: string;
+};
 export type ChangeNameAvatarType = {
   name: string;
   avatar?: string;

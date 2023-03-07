@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import style from "./Login.module.scss";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
 import { Navigate, NavLink } from "react-router-dom";
@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { login } from "../auth-slice";
 import { PasswordField } from "../../../common/components/Inputs/Password/PasswordField";
 import { EmailField } from "../../../common/components/Inputs/Email/EmailField";
+import {login, setIsRegistration} from "../auth-slice";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -27,9 +28,12 @@ export const Login = () => {
   });
   const onSubmit: SubmitHandler<LoginForm> = (data) => {
     dispatch(login(data));
-    console.log(data);
     reset();
   };
+
+  useEffect(() => {
+    dispatch(setIsRegistration({ isRegister: false }));
+  }, []);
 
   if (isLoginIn) return <Navigate to={"/Profile"} />;
   return (

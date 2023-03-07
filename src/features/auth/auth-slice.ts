@@ -20,8 +20,8 @@ const slice = createSlice({
     setIsLoggedIn(state, action: PayloadAction<{ isLoginIn: boolean }>) {
       state.isLoggedIn = action.payload.isLoginIn;
     },
-    setIsRegistration(state, action: PayloadAction<{ value: boolean }>) {
-      state.isRegister = action.payload.value;
+    setIsRegistration(state, action: PayloadAction<{ isRegister: boolean }>) {
+      state.isRegister = action.payload.isRegister;
     },
     setIsMail(state, action: PayloadAction<{ isEMail: boolean }>) {
       state.isEMail = action.payload.isEMail;
@@ -83,9 +83,9 @@ export const logoutThunk = () => async (dispatch: Dispatch) => {
 export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispatch) => {
   try {
     dispatch(setAppStatusAC({ status: "loading" }));
-    const res = await authAPI.register(data);
-    dispatch(setIsRegistration({ value: true }));
-    alert("здесь будет handleServerAppError");
+    await authAPI.register(data);
+    dispatch(setAppStatusAC({ status: "idle" }));
+    dispatch(setIsRegistration({ isRegister: true }));
   } catch (e: any) {
     const error = e.response ? e.response.data.error : e.message + ", more details in the console";
     dispatch(setAppErrorAC({ error: error }));

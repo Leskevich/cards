@@ -12,12 +12,11 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
-import { registerTC } from "../auth-slice";
-import { Navigate } from "react-router-dom";
-
+import {registerTC} from "../auth-slice";
 import { PATH } from "../../../common/constans/path";
 import { useAppSelector } from "../../../common/hook/useSelectHook";
 import { useAppDispatch } from "../../../common/hook/useDispatchHook";
+import {Navigate} from "react-router-dom";
 
 export type RegistrationFormType = {
   email: string;
@@ -26,7 +25,7 @@ export type RegistrationFormType = {
 };
 export const Registration = () => {
   const dispatch = useAppDispatch();
-  const isRegister = useAppSelector((state) => state.auth.isRegister);
+  const {isRegister} = useAppSelector((state) => state.auth);
   const {
     register,
     reset,
@@ -36,8 +35,8 @@ export const Registration = () => {
   } = useForm<RegistrationFormType>({ mode: "onBlur" });
 
   const onSubmit: SubmitHandler<RegistrationFormType> = (data) => {
-    dispatch(registerTC(data));
-    reset();
+      dispatch(registerTC(data));
+      reset();
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -52,7 +51,7 @@ export const Registration = () => {
   };
 
   if (isRegister) {
-    return <Navigate to={PATH.LOGIN} />;
+    return <Navigate replace to={PATH.LOGIN} />;
   }
 
   return (
@@ -61,7 +60,6 @@ export const Registration = () => {
       <Grid container justifyContent={"center"} className={style.formContainer}>
         <Grid item justifyContent={"center"}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/*<FormControl>*/}
             <FormGroup>
               <FormControl className={style.emailInput}>
                 <TextField
@@ -127,10 +125,6 @@ export const Registration = () => {
                   }
                   {...register("confirmPassword", {
                     required: "Password is required",
-                    minLength: {
-                      value: 8,
-                      message: "Need more than 8 characters",
-                    },
                     validate: (val: string) => {
                       if (watch("password") !== val) {
                         return "Your passwords don't match";
@@ -142,7 +136,6 @@ export const Registration = () => {
                   <span style={{ color: "red" }}>{errors.confirmPassword.message}</span>
                 )}
               </FormControl>
-
               <Button
                 disabled={!isValid}
                 className={style.submitButton}
@@ -153,7 +146,6 @@ export const Registration = () => {
                 Sign Up
               </Button>
             </FormGroup>
-            {/*</FormControl>*/}
           </form>
         </Grid>
       </Grid>

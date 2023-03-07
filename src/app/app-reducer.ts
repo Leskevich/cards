@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: InitialStateType = {
-  status: "idle",
+  status: "loading",
   error: "" as string | null,
   isInitialized: false,
 };

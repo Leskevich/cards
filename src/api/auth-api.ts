@@ -14,9 +14,11 @@ export const authAPI = {
     return instance.post<LoginRequestType>("auth/me", {});
   },
   setNewUserName(name: string) {
-    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", { name });
+    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", {name});
   },
   register(payload: RegisterPayloadType) {
+    return instance.post<any, AxiosResponse<RegisterResponseType>, RegisterPayloadType>("auth/register", payload)
+      .then((res) => res.data);
     return instance.post<any, AxiosResponse<registerResponseType>, RegisterPayloadType>("auth/register", payload);
   },
   forgotPassword(data: forgotPasswordType) {
@@ -24,7 +26,7 @@ export const authAPI = {
   },
 };
 
-export type forgotPasswordType = {
+export type ForgotPasswordType = {
   email: string;
   from: string;
   message: string;
@@ -58,6 +60,11 @@ type UserType = {
 };
 type registerResponseType = {
   addedUser: UserType;
+};
+
+type RegisterResponseType = {
+  addedUser: UserType;
+  error?: string
 };
 export type LoginRequestType = UserType & {
   token: string;

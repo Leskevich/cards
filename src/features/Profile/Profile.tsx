@@ -25,7 +25,7 @@ export const Profile = React.memo(() => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(isAuth());
+      dispatch(isAuth());
   }, [dispatch]);
 
   const setNewName = (title: string) => {

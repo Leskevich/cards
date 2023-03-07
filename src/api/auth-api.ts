@@ -13,8 +13,8 @@ export const authAPI = {
   me() {
     return instance.post<LoginRequestType>("auth/me", {});
   },
-  setNewUserName(name: string) {
-    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", {name});
+  setNewUserName(name: string, avatar?: string) {
+    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", {name, avatar});
   },
   register(payload: RegisterPayloadType) {
     return instance.post<any, AxiosResponse<RegisterResponseType>, RegisterPayloadType>("auth/register", payload)

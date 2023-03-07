@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Dispatch } from "redux";
 import {authAPI, ForgotPasswordType, loginResponseType, RegisterPayloadType} from "../../api/auth-api";
-import { setAppErrorAC, setAppStatusAC, setIsInitializedAC } from "../../app/app-reducer";
+import { setAppStatusAC, setIsInitializedAC } from "../../app/app-reducer";
 import { setProfile } from "../Profile/profile-slice";
 import { ErrorNetwork } from "../../common/utils/ErrorNetwork";
 
@@ -62,6 +62,7 @@ export const login = (data: loginResponseType) => async (dispatch: Dispatch) => 
     dispatch(setAppStatusAC({ status: "succeeded" }));
   } catch (e) {
     ErrorNetwork(e, dispatch);
+  }finally {
     dispatch(setAppStatusAC({ status: "idle" }));
   }
 };
@@ -75,9 +76,8 @@ export const logoutThunk = () => async (dispatch: Dispatch) => {
     } else {
       alert("Are you sure about you are programmer?");
     }
-  } catch (e: any) {
-    const error = e.response ? e.response.data.error : e.message + ", more details in the console";
-    alert(error);
+  } catch (e) {
+    ErrorNetwork(e, dispatch);
   } finally {
     dispatch(setAppStatusAC({ status: "idle" }));
   }
@@ -88,9 +88,8 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
     await authAPI.register(data);
     dispatch(setAppStatusAC({ status: "idle" }));
     dispatch(setIsRegistration({ isRegister: true }));
-  } catch (e: any) {
-    const error = e.response ? e.response.data.error : e.message + ", more details in the console";
-    dispatch(setAppErrorAC({ error: error }));
+  } catch (e) {
+    ErrorNetwork(e, dispatch);
   } finally {
     dispatch(setAppStatusAC({ status: "idle" }));
   }
@@ -101,7 +100,7 @@ export const setNewUserNameThunk = (title: string, avatar?: string) => async (di
     const res = await authAPI.setNewUserName(title, avatar);
     dispatch(setProfile(res.data.updatedUser));
   } catch (e: any) {
-    ErrorNetwork(e.message, dispatch);
+    ErrorNetwork(e, dispatch);
   }finally {
     dispatch(setAppStatusAC({ status: "idle" }))
   }
@@ -113,7 +112,7 @@ export const isAuth = () => async (dispatch: Dispatch) => {
     dispatch(setIsLoggedIn({ isLoginIn: true }));
     dispatch(setProfile(res.data));
   } catch (e: any) {
-    ErrorNetwork(e.message, dispatch);
+    ErrorNetwork(e, dispatch);
   } finally {
     dispatch(setAppStatusAC({ status: "idle" }));
     dispatch(setIsInitializedAC({ isInitialized: true }));

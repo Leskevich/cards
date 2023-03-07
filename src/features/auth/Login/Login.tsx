@@ -39,8 +39,7 @@ export const Login = () => {
   useEffect(() => {
     dispatch(setIsRegistration({ isRegister: false }));
   }, []);
-
-
+  const a = 5;
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);

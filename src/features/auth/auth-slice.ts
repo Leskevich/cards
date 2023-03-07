@@ -9,7 +9,8 @@ import { ErrorNetwork } from "../../common/utils/ErrorNetwork";
 const initialState = {
   isLoggedIn: false,
   isRegister: false,
-  token: "" as string,
+  isEMail: false,
+  email: "",
 };
 
 const slice = createSlice({
@@ -22,10 +23,16 @@ const slice = createSlice({
     setIsRegistration(state, action: PayloadAction<{ value: boolean }>) {
       state.isRegister = action.payload.value;
     },
+    setIsMail(state, action: PayloadAction<{ isEMail: boolean }>) {
+      state.isEMail = action.payload.isEMail;
+    },
+    setMail(state, action: PayloadAction<{ email: string }>) {
+      state.email = action.payload.email;
+    },
   },
 });
 
-export const { setIsLoggedIn, setIsRegistration } = slice.actions;
+export const { setIsLoggedIn, setIsRegistration, setIsMail, setMail } = slice.actions;
 export const authSlice = slice.reducer;
 
 //Thunks
@@ -39,7 +46,9 @@ password recovery link:
 </div>`,
   };
   try {
-    const res = authAPI.forgotPassword(data);
+    await authAPI.forgotPassword(data);
+    dispatch(setIsMail({ isEMail: true }));
+    dispatch(setMail({ email }));
   } catch (e) {
     ErrorNetwork(e, dispatch);
   }

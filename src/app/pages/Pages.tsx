@@ -7,8 +7,8 @@ import { PasswordRecovery } from "../../features/auth/PasswordRecovery/PasswordR
 import { NewPassword } from "../../features/auth/NewPassword/NewPassword";
 import { Login } from "../../features/auth/Login/Login";
 import style from "./Pages.module.scss";
-import CheckEmail from "../../assets/img/CheckEmail.png";
 import { PATH } from "../../common/constans/path";
+import { CheckEmail } from "../../features/auth/CheckEmail/CheckEmail";
 
 export const Pages = () => {
   return (

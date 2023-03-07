@@ -4,9 +4,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "@mui/material/Button/Button";
 import { EmailField } from "../../../common/components/Inputs/Email/EmailField";
 import { PATH } from "../../../common/constans/path";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../../common/hook/useDispatchHook";
 import { forgot } from "../auth-slice";
+import { useAppSelector } from "../../../common/hook/useSelectHook";
 
 type PasswordRecoveryFormType = {
   email: string;
@@ -14,6 +15,7 @@ type PasswordRecoveryFormType = {
 
 export const PasswordRecovery = () => {
   const dispatch = useAppDispatch();
+  const isEmail = useAppSelector((state) => state.auth.isEMail);
   const {
     register,
     formState: { isValid, errors },
@@ -24,6 +26,7 @@ export const PasswordRecovery = () => {
     dispatch(forgot(data.email));
     reset();
   };
+  if (isEmail) return <Navigate to={PATH.CHECK_EMAIL} />;
   return (
     <div className={style.blockContainer}>
       <div className={style.title}>Forgot your password?</div>

@@ -1,19 +1,13 @@
 import React from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./Login.module.scss";
-import TextField from "@mui/material/TextField/TextField";
-import FormControl from "@mui/material/FormControl/FormControl";
-import InputLabel from "@mui/material/InputLabel/InputLabel";
-import Input from "@mui/material/Input";
-import InputAdornment from "@mui/material/InputAdornment/InputAdornment";
-import IconButton from "@mui/material/IconButton/IconButton";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
 import { Navigate, NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../../common/hook/useDispatchHook";
-
 import { useAppSelector } from "../../../common/hook/useSelectHook";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { login } from "../auth-slice";
+import { PasswordField } from "../../../common/components/Inputs/Password/PasswordField";
+import { EmailField } from "../../../common/components/Inputs/Email/EmailField";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -33,66 +27,18 @@ export const Login = () => {
   });
   const onSubmit: SubmitHandler<LoginForm> = (data) => {
     dispatch(login(data));
+    console.log(data);
     reset();
   };
 
-  const [showPassword, setShowPassword] = React.useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
   if (isLoginIn) return <Navigate to={"/Profile"} />;
   return (
     <div>
       <div className={style.formContainer}>
         <div className={style.title}>Sign in</div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <TextField
-            className={style.email}
-            sx={{ width: "347px" }}
-            id="email"
-            label="Email"
-            variant="standard"
-            {...register("email", {
-              required: "Required",
-              pattern: {
-                value: /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/,
-                message: "email must be a valid email",
-              },
-            })}
-            error={!!errors.email}
-            helperText={errors.email?.message}
-          />
-
-          <FormControl sx={{ width: "347px" }} variant="standard" className={style.email}>
-            <InputLabel htmlFor="password" style={{ color: "red" }}>
-              Password
-            </InputLabel>
-            <Input
-              {...register("password", {
-                required: "Required",
-                minLength: {
-                  value: 7,
-                  message: "password must be at least 8 characters",
-                },
-              })}
-              autoComplete={"on"}
-              type={showPassword ? "text" : "password"}
-              error={!!errors}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-            {errors.password && <span className={style.error}>{errors.password.message}</span>}
-          </FormControl>
+          <EmailField register={register} errors={errors} name={"email"} />
+          <PasswordField name={"password"} errors={errors} register={register} />
           <div className={style.checkbox}>
             <Checkbox id="rememberMe" {...register("rememberMe")} />
             <span>Remember me</span>

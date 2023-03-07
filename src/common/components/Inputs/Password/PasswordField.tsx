@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "../../features/auth/Registration/Registration.module.scss";
+import style from "./PasswordField.module.scss";
 import InputLabel from "@mui/material/InputLabel";
 import FilledInput from "@mui/material/FilledInput";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -9,12 +9,13 @@ import Visibility from "@mui/icons-material/Visibility";
 import FormControl from "@mui/material/FormControl/FormControl";
 
 type InputPasswordType = {
+  name: string;
   errors: any;
   register: any;
 };
 
-const InputPassword = (props: InputPasswordType) => {
-  const { errors, register } = props;
+export const PasswordField = (props: InputPasswordType) => {
+  const { name, errors, register } = props;
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -23,8 +24,8 @@ const InputPassword = (props: InputPasswordType) => {
     event.preventDefault();
   };
   return (
-    <div>
-      <FormControl className={style.emailInput} variant="filled">
+    <div className={style.InputContainer}>
+      <FormControl className={style.InputPassword} variant="filled">
         <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
         <FilledInput
           id="filled-adornment-password1"
@@ -42,12 +43,12 @@ const InputPassword = (props: InputPasswordType) => {
               </IconButton>
             </InputAdornment>
           }
-          {...register("password", {
+          {...register(name, {
             required: "Password is required",
             minLength: {
               value: 8,
-              message: "Need more than 8 characters"
-            }
+              message: "Need more than 8 characters",
+            },
           })}
         />
         {errors.password?.message && <span style={{ color: "red" }}>{errors.password.message}</span>}
@@ -55,5 +56,3 @@ const InputPassword = (props: InputPasswordType) => {
     </div>
   );
 };
-
-export default InputPassword;

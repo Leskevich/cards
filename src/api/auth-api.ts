@@ -17,12 +17,12 @@ export const authAPI = {
     return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", {name});
   },
   register(payload: RegisterPayloadType) {
-    return instance.post<AxiosResponse<RegisterResponseType>>("auth/register", payload);
+    return instance.post<any, AxiosResponse<RegisterResponseType>, RegisterPayloadType>("auth/register", payload)
+      .then((res) => res.data);
   },
 
 };
-//тип для регистр
-// <any, AxiosResponse<registerResponseType>, RegisterPayloadType>
+
 export type ChangeNameAvatarType = {
   name: string;
   avatar?: string;

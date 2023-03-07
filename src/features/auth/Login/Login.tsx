@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./Login.module.scss";
 import TextField from "@mui/material/TextField/TextField";
@@ -13,7 +13,7 @@ import { Navigate, NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../../common/hook/useDispatchHook";
 
 import { useAppSelector } from "../../../common/hook/useSelectHook";
-import { login } from "../auth-slice";
+import {login, setIsRegistration} from "../auth-slice";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -35,6 +35,12 @@ export const Login = () => {
     dispatch(login(data));
     reset();
   };
+
+  useEffect(() => {
+    dispatch(setIsRegistration({ isRegister: false }));
+  }, []);
+
+
 
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);

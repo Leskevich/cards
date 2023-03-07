@@ -12,12 +12,11 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
-import { registerTC } from "../auth-slice";
-import { Navigate } from "react-router-dom";
-
+import {registerTC} from "../auth-slice";
 import { PATH } from "../../../common/constans/path";
 import { useAppSelector } from "../../../common/hook/useSelectHook";
 import { useAppDispatch } from "../../../common/hook/useDispatchHook";
+import {Navigate} from "react-router-dom";
 
 export type RegistrationFormType = {
   email: string;
@@ -26,7 +25,7 @@ export type RegistrationFormType = {
 };
 export const Registration = () => {
   const dispatch = useAppDispatch();
-  const isRegister = useAppSelector((state) => state.auth.isRegister);
+  const {isRegister} = useAppSelector((state) => state.auth);
   const {
     register,
     reset,
@@ -36,8 +35,8 @@ export const Registration = () => {
   } = useForm<RegistrationFormType>({ mode: "onBlur" });
 
   const onSubmit: SubmitHandler<RegistrationFormType> = (data) => {
-    dispatch(registerTC(data));
-    reset();
+      dispatch(registerTC(data));
+      reset();
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -52,7 +51,7 @@ export const Registration = () => {
   };
 
   if (isRegister) {
-    return <Navigate to={PATH.LOGIN} />;
+    return <Navigate replace to={PATH.LOGIN} />;
   }
 
   return (

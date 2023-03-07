@@ -18,8 +18,8 @@ const slice = createSlice({
     setIsLoggedIn(state, action: PayloadAction<{ isLoginIn: boolean }>) {
       state.isLoggedIn = action.payload.isLoginIn;
     },
-    setIsRegistration(state, action: PayloadAction<{ value: boolean }>) {
-      state.isRegister = action.payload.value;
+    setIsRegistration(state, action: PayloadAction<{ isRegister: boolean }>) {
+      state.isRegister = action.payload.isRegister;
     },
   },
 });
@@ -58,8 +58,10 @@ export const logoutThunk = () => async (dispatch: Dispatch) => {
 export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispatch) => {
   try {
     dispatch(setAppStatusAC({ status: "loading" }));
-    const res = await authAPI.register(data);
-    dispatch(setIsRegistration({ value: true }));
+    await authAPI.register(data);
+    dispatch(setAppStatusAC({ status: "idle" }));
+    dispatch(setIsRegistration({ isRegister: true }));
+    // dispatch(setIsLoggedIn({ isLoginIn: true }));
   } catch (e: any) {
     const error = e.response ? e.response.data.error : e.message + ", more details in the console";
     dispatch(setAppErrorAC({ error: error }));
@@ -81,6 +83,7 @@ export const isAuth = () => async (dispatch: Dispatch) => {
     const res = await authAPI.me();
     dispatch(setIsLoggedIn({ isLoginIn: true }));
     dispatch(setProfile(res.data));
+    console.log(res)
   } catch (e: any) {
     errorResponse(e);
   } finally {

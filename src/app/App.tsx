@@ -7,11 +7,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 import {useAppSelector} from "../common/hook/useSelectHook";
 import {useAppDispatch} from "../common/hook/useDispatchHook";
 import {isAuth} from "../features/auth/auth-slice";
+import LinearProgress from '@mui/material/LinearProgress';
+import {RequestStatusType} from "./app-reducer";
 
 
 function App() {
 
   const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
+  const status = useAppSelector<RequestStatusType>(state => state.app.status)
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -27,6 +30,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      {status === 'loading' && <LinearProgress color="secondary" />}
       <Pages />
       <ErrorSnackbar />
     </div>

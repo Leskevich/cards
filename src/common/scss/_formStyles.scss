@@ -1,7 +1,7 @@
 @import "stylesVariables";
 
 //mixins for all forms of App
-@mixin authParentClass($width: none, $height: none, $flexDirection: column, $justifyContent: space-around, $marginBottom: 20px, $marginTop:60px) {
+@mixin authParentClass($width: none, $height: none, $flexDirection: column, $justifyContent: space-around, $marginBottom: 20px, $marginTop: 60px) {
   display: flex;
   flex-direction: $flexDirection;
   justify-content: $justifyContent;

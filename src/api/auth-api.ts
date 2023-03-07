@@ -19,9 +19,8 @@ export const authAPI = {
   register(payload: RegisterPayloadType) {
     return instance.post<any, AxiosResponse<RegisterResponseType>, RegisterPayloadType>("auth/register", payload)
       .then((res) => res.data);
-    return instance.post<any, AxiosResponse<registerResponseType>, RegisterPayloadType>("auth/register", payload);
   },
-  forgotPassword(data: forgotPasswordType) {
+  forgotPassword(data: ForgotPasswordType) {
     return axios.post("https://neko-back.herokuapp.com/2.0/auth/forgot", data);
   },
 };
@@ -57,9 +56,6 @@ type UserType = {
   created: string;
   updated: string;
   __v: number;
-};
-type registerResponseType = {
-  addedUser: UserType;
 };
 
 type RegisterResponseType = {

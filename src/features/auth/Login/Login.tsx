@@ -5,19 +5,19 @@ import { Navigate, NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../../common/hook/useDispatchHook";
 import { useAppSelector } from "../../../common/hook/useSelectHook";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { login } from "../auth-slice";
 import { PasswordField } from "../../../common/components/Inputs/Password/PasswordField";
 import { EmailField } from "../../../common/components/Inputs/Email/EmailField";
 import {login, setIsRegistration} from "../auth-slice";
 
+type LoginForm = {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+};
+
 export const Login = () => {
   const dispatch = useAppDispatch();
   const isLoginIn = useAppSelector((state) => state.auth.isLoggedIn);
-  type LoginForm = {
-    email: string;
-    password: string;
-    rememberMe: boolean;
-  };
   const {
     register,
     formState: { errors, isValid },

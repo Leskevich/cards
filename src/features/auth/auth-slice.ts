@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Dispatch } from "redux";
-import { authAPI, forgotPasswordType, loginResponseType, RegisterPayloadType } from "../../api/auth-api";
+import {authAPI, ForgotPasswordType, loginResponseType, RegisterPayloadType} from "../../api/auth-api";
 import { setAppErrorAC, setAppStatusAC, setIsInitializedAC } from "../../app/app-reducer";
 import { setProfile } from "../Profile/profile-slice";
 import { errorResponse } from "../../common/utils/errorResponse/errorResponse";
@@ -37,7 +37,7 @@ export const authSlice = slice.reducer;
 
 //Thunks
 export const forgot = (email: string) => async (dispatch: Dispatch) => {
-  const data: forgotPasswordType = {
+  const data: ForgotPasswordType = {
     email,
     from: "leskevichtema@gmail.com",
     message: `<div style="background-color: lime; padding: 15px">

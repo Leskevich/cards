@@ -14,6 +14,8 @@ import { useAppDispatch } from "../../../common/hook/useDispatchHook";
 
 import { useAppSelector } from "../../../common/hook/useSelectHook";
 import { login } from "../auth-slice";
+import Button from "@mui/material/Button/Button";
+import { FilledInput } from "@mui/material";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -27,9 +29,9 @@ export const Login = () => {
     register,
     formState: { errors, isValid },
     handleSubmit,
-    reset,
+    reset
   } = useForm<LoginForm>({
-    mode: "onBlur",
+    mode: "onBlur"
   });
   const onSubmit: SubmitHandler<LoginForm> = (data) => {
     dispatch(login(data));
@@ -46,35 +48,38 @@ export const Login = () => {
     <div>
       <div className={style.formContainer}>
         <div className={style.title}>Sign in</div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.formBlock}>
+          <FormControl sx={{ width: "347px" }} variant="standard" className={style.email}>
           <TextField
             className={style.email}
             sx={{ width: "347px" }}
             id="email"
             label="Email"
-            variant="standard"
+            variant="filled"
             {...register("email", {
               required: "Required",
               pattern: {
                 value: /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/,
-                message: "email must be a valid email",
-              },
+                message: "email must be a valid email"
+              }
             })}
             error={!!errors.email}
             helperText={errors.email?.message}
           />
+          </FormControl>
 
           <FormControl sx={{ width: "347px" }} variant="standard" className={style.email}>
-            <InputLabel htmlFor="password" style={{ color: "red" }}>
+            <InputLabel htmlFor="password">
               Password
             </InputLabel>
-            <Input
+            <FilledInput
               {...register("password", {
                 required: "Required",
                 minLength: {
                   value: 7,
-                  message: "password must be at least 8 characters",
-                },
+                  message: "password must be at least 8 characters"
+                }
+
               })}
               autoComplete={"on"}
               type={showPassword ? "text" : "password"}
@@ -100,12 +105,11 @@ export const Login = () => {
           <NavLink to={"/passwordRecovery"} className={style.recovery}>
             Forgot Password?
           </NavLink>
-          <button disabled={!isValid} type={"submit"} className={style.button}>
+          <Button disabled={!isValid} type={"submit"} className={style.button} sx={{ color: 'white', }}>
             Sign In
-          </button>
+          </Button>
         </form>
-
-        <NavLink to={"/"} className={style.onAccount}>
+        <NavLink to={"/"} className={style.info}>
           Already have an account?
         </NavLink>
         <NavLink to={"/registration"} className={style.onAccount}>

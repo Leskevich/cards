@@ -1,46 +1,42 @@
+@import "stylesVariables";
 
 //mixins for all forms of App
-@mixin authParentClass {
+@mixin authParentClass($width: none, $height: none, $flexDirection: column, $justifyContent: space-around, $marginBottom: 20px, $marginTop:60px) {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: $flexDirection;
+  justify-content: $justifyContent;
   align-items: center;
-  background: #fff;
-  min-height: 552px;
-  width: 413px;
-  margin-top: 60px;
-  margin-bottom: 20px;
+  background: $whiteBGColor;
+  width: $width;
+  min-height: $height;
+  margin-top: $marginTop;
+  margin-bottom: $marginBottom;
   border-radius: 2px;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: $boxShadowColors;
+  padding: 20px 0;
 }
+
 @mixin formContainerClass {
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 2px;
-  background: #fff;
+  background: $whiteBGColor;
 }
-@mixin inputClass{
+
+@mixin inputClass {
   min-width: 350px;
   margin-bottom: 24px;
 }
+
 @mixin submitButtonClass {
-  background: #366EFF;
-  box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: $blueColor;
+  box-shadow: $boxShadowColors;
   border-radius: 30px;
   margin-top: 50px;
 }
-@mixin toLoginClass {
-  width: 186px;
-  height: 24px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 24px;
-  color: #000000;
-  opacity: 0.5;
-}
-@mixin toSignInClass {
+
+@mixin toSignOrLogInClass {
   width: 65px;
   height: 24px;
   font-style: normal;
@@ -48,9 +44,9 @@
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  text-decoration-line: underline;
-  color: #366EFF;
+  color: $blueColor;
   margin-bottom: 10px;
+  text-decoration: none;
 }
 
 @mixin circleImageBlock {
@@ -64,6 +60,7 @@
   justify-content: end;
   align-items: end;
   margin-bottom: -30px;
+  text-decoration: none;
 }
 
 @mixin infoTextAuth {
@@ -71,10 +68,12 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: #000000;
+  color: $blackColor;
   opacity: 0.5;
   margin-top: -30px;
-  max-width:328px ;
+  max-width: 328px;
+  text-decoration: none;
+  text-align: center;
 }
 
 @mixin authTitle {
@@ -85,6 +84,14 @@
   font-size: 22px;
   line-height: 27px;
   text-align: center;
-  color: #000000;
+  color: $blackColor;
   margin: 0;
+  text-decoration: none;
 }
+
+@mixin linkStyle {
+  color: $blueColor;
+  text-decoration: underline;
+}
+
+

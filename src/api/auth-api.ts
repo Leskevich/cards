@@ -13,8 +13,8 @@ export const authAPI = {
   me() {
     return instance.post<LoginRequestType>("auth/me", {});
   },
-  setNewUserName(name: string) {
-    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", { name });
+  setNewUserName(name: string, avatar?: string) {
+    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", { name, avatar });
   },
   register(payload: RegisterPayloadType) {
     return instance.post<any, AxiosResponse<registerResponseType>, RegisterPayloadType>("auth/register", payload);
@@ -37,17 +37,17 @@ export type loginResponseType = {
   rememberMe: boolean;
 };
 
-type UserType = {
-  _id: string;
+export type UserType = {
+  _id?: string;
   email: string;
-  rememberMe: boolean;
-  isAdmin: boolean;
+  rememberMe?: boolean;
+  isAdmin?: boolean;
   name: string;
-  verified: boolean;
-  publicCardPacksCount: number;
-  created: string;
-  updated: string;
-  __v: number;
+  verified?: boolean;
+  publicCardPacksCount?: number;
+  created?: string;
+  updated?: string;
+  __v?: number;
 };
 type registerResponseType = {
   addedUser: UserType;

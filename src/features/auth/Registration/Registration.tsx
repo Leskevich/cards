@@ -61,7 +61,6 @@ export const Registration = () => {
       <Grid container justifyContent={"center"} className={style.formContainer}>
         <Grid item justifyContent={"center"}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/*<FormControl>*/}
             <FormGroup>
               <FormControl className={style.emailInput}>
                 <TextField

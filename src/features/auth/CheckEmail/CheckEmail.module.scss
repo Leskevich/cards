@@ -1,10 +1,9 @@
 @import "../../../common/scss/formStyles";
 
 .profileParent {
-  @include authParentClass();
-  width: 413px;
-  height: 408px;
+  @include authParentClass(413px, 408px);
   padding: 20px;
+  min-height: 408px;
   .title{
     @include authTitle()
   }
@@ -12,13 +11,11 @@
     @include circleImageBlock()
   }
   .info{
-    @include infoTextAuth()
+    @include infoTextAuth();
+    margin: 0;
+    &:first-child{
+      text-align: center;
+    }
   }
-  &:nth-child(3){
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-  }
+
 }

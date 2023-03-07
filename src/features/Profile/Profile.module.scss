@@ -1,10 +1,9 @@
 @import "src/common/scss/formStyles";
 
 .profileParent {
-  @include authParentClass();
-  width: 413px;
-  height: 408px;
+  @include authParentClass(413px, 408px, column, space-around);
   padding: 20px;
+  min-height: 408px;
   .title{
     @include authTitle()
   }
@@ -26,7 +25,6 @@
   }
   .info{
     @include infoTextAuth()
-
   }
   &:nth-child(3){
     font-style: normal;

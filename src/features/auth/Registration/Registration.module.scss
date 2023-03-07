@@ -2,11 +2,11 @@
 
 .registration{
   h2{
-    margin: 35px 0 42px 0;
+    @include authTitle()
   }
-  @include authParentClass();
+  @include authParentClass(413px, 528px, column, space-around);
   &:first-child{
-    color: black;
+    color: $blackColor;
   }
   .formContainer {
     @include formContainerClass();
@@ -24,10 +24,11 @@
     }
   }
   .toLogin{
-    @include toLoginClass();
+    @include infoTextAuth();
+    margin: 0;
   }
   .toSignIn{
-    @include toSignInClass()
+    @include toSignOrLogInClass()
   }
 
 }

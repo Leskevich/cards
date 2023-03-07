@@ -1,0 +1,32 @@
+@import "../../../common/scss/formStyles";
+
+.parentContainer{
+  font-family: 'Montserrat' sans-serif;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .info{
+    margin-right: 20px;
+    .title{
+      color: $blackColor;
+      font-weight: 600;
+      font-size: 50px;
+      line-height: 61px;
+    }
+    .text{
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 36px;
+    }
+    .button{
+      background: $blueColor;
+    }
+  }
+  .imageBlock{
+    display: block;
+    width: 450px;
+    height: 200px;
+  }
+}

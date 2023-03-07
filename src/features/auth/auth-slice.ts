@@ -3,7 +3,6 @@ import { Dispatch } from "redux";
 import {authAPI, ForgotPasswordType, loginResponseType, RegisterPayloadType} from "../../api/auth-api";
 import { setAppErrorAC, setAppStatusAC, setIsInitializedAC } from "../../app/app-reducer";
 import { setProfile } from "../Profile/profile-slice";
-import { errorResponse } from "../../common/utils/errorResponse/errorResponse";
 import { ErrorNetwork } from "../../common/utils/ErrorNetwork";
 
 const initialState = {
@@ -54,13 +53,16 @@ password recovery link:
   }
 };
 export const login = (data: loginResponseType) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatusAC({ status: "loading" }));
   try {
     const response = await authAPI.login(data);
     if (response) {
       dispatch(setIsLoggedIn({ isLoginIn: true }));
     }
+    dispatch(setAppStatusAC({ status: "succeeded" }));
   } catch (e) {
     ErrorNetwork(e, dispatch);
+    dispatch(setAppStatusAC({ status: "idle" }));
   }
 };
 export const logoutThunk = () => async (dispatch: Dispatch) => {
@@ -93,12 +95,15 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
     dispatch(setAppStatusAC({ status: "idle" }));
   }
 };
-export const setNewUserNameThunk = (title: string) => async (dispatch: Dispatch) => {
+export const setNewUserNameThunk = (title: string, avatar?: string) => async (dispatch: Dispatch) => {
   try {
-    const res = await authAPI.setNewUserName(title);
+    dispatch(setAppStatusAC({ status: "loading" }))
+    const res = await authAPI.setNewUserName(title, avatar);
     dispatch(setProfile(res.data.updatedUser));
   } catch (e: any) {
-    errorResponse(e);
+    ErrorNetwork(e.message, dispatch);
+  }finally {
+    dispatch(setAppStatusAC({ status: "idle" }))
   }
 };
 export const isAuth = () => async (dispatch: Dispatch) => {
@@ -108,7 +113,7 @@ export const isAuth = () => async (dispatch: Dispatch) => {
     dispatch(setIsLoggedIn({ isLoginIn: true }));
     dispatch(setProfile(res.data));
   } catch (e: any) {
-    errorResponse(e);
+    ErrorNetwork(e.message, dispatch);
   } finally {
     dispatch(setAppStatusAC({ status: "idle" }));
     dispatch(setIsInitializedAC({ isInitialized: true }));

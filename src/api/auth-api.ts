@@ -45,17 +45,17 @@ export type loginResponseType = {
   rememberMe: boolean;
 };
 
-type UserType = {
-  _id: string;
+export type UserType = {
+  _id?: string;
   email: string;
-  rememberMe: boolean;
-  isAdmin: boolean;
+  rememberMe?: boolean;
+  isAdmin?: boolean;
   name: string;
-  verified: boolean;
-  publicCardPacksCount: number;
-  created: string;
-  updated: string;
-  __v: number;
+  verified?: boolean;
+  publicCardPacksCount?: number;
+  created?: string;
+  updated?: string;
+  __v?: number;
 };
 
 type RegisterResponseType = {

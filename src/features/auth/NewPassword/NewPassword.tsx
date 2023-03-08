@@ -22,7 +22,8 @@ type NewPasswordFormType = {
 export const NewPassword = () => {
   const dispatch = useAppDispatch();
   const {isChangePassword} = useAppSelector(state => state.auth)
-  const {resetPasswordToken} = useParams();
+  const {token} = useParams<{token: string}>();
+
 
   const {
     register,
@@ -34,7 +35,7 @@ export const NewPassword = () => {
   const onSubmit: SubmitHandler<NewPasswordFormType> = (data) => {
     console.log(data);
     const password = data.password
-    dispatch(changePasswordTC({password, resetPasswordToken}))
+    dispatch(changePasswordTC({password, resetPasswordToken: token}))
     reset();
   };
 

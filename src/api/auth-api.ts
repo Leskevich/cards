@@ -4,27 +4,27 @@ import { instance } from "../common/instance/instance";
 export const authAPI = {
   login(payload: loginResponseType) {
     return instance
-      .post<any, AxiosResponse<LoginRequestType>, loginResponseType>("auth/login", payload)
+      .post<any, AxiosResponse<LoginRequestType>, loginResponseType>("https://neko-back.herokuapp.com/2.0/auth/login", payload)
       .then((res) => res.data);
   },
   logOut() {
-    return instance.delete<{ info: string; error: string }>("auth/me");
+    return instance.delete<{ info: string; error: string }>("https://neko-back.herokuapp.com/2.0/auth/me");
   },
   me() {
-    return instance.post<LoginRequestType>("auth/me", {});
+    return instance.post<LoginRequestType>("https://neko-back.herokuapp.com/2.0/auth/me", {});
   },
   setNewUserName(name: string, avatar?: string) {
-    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("auth/me", {name, avatar});
+    return instance.put<any, AxiosResponse<UpdateResponseUserType>, ChangeNameAvatarType>("https://neko-back.herokuapp.com/2.0/auth/me", {name, avatar});
   },
   register(payload: RegisterPayloadType) {
-    return instance.post<any, AxiosResponse<RegisterResponseType>, RegisterPayloadType>("auth/register", payload)
+    return instance.post<any, AxiosResponse<RegisterResponseType>, RegisterPayloadType>("https://neko-back.herokuapp.com/2.0/auth/register", payload)
       .then((res) => res.data);
   },
   forgotPassword(data: ForgotPasswordType) {
     return axios.post("https://neko-back.herokuapp.com/2.0/auth/forgot", data);
   },
   setNewPassword(data: SetNewPasswordType){
-    return axios.post<AxiosResponse<{info: string, error: string}>>("auth/set-new-password", data)
+    return axios.post<AxiosResponse<{info: string, error: string}>>("https://neko-back.herokuapp.com/2.0/auth/set-new-password", data)
   }
 };
 

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Grid from "@mui/material/Grid";
 import FormControl from "@mui/material/FormControl/FormControl";
 import FormGroup from "@mui/material/FormGroup/FormGroup";
-import TextField from "@mui/material/TextField/TextField";
 import Button from "@mui/material/Button/Button";
 import style from "./Registration.module.scss";
-import { SubmitHandler, useForm } from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import InputLabel from "@mui/material/InputLabel";
 import FilledInput from "@mui/material/FilledInput";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -13,9 +12,9 @@ import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import {registerTC} from "../auth-slice";
-import { PATH } from "../../../common/constans/path";
-import { useAppSelector } from "../../../common/hook/useSelectHook";
-import { useAppDispatch } from "../../../common/hook/useDispatchHook";
+import {PATH} from "../../../common/constans/path";
+import {useAppSelector} from "../../../common/hook/useSelectHook";
+import {useAppDispatch} from "../../../common/hook/useDispatchHook";
 import {Navigate} from "react-router-dom";
 import {EmailField} from "../../../common/components/Inputs/Email/EmailField";
 import {PasswordField} from "../../../common/components/Inputs/Password/PasswordField";
@@ -60,52 +59,7 @@ export const Registration = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup>
               <EmailField register={register} errors={errors} name={"email"} />
-              {/*<FormControl className={style.emailInput}>*/}
-              {/*  <TextField*/}
-              {/*    {...register("email", {*/}
-              {/*      required: "Email adress is required",*/}
-              {/*      pattern: {*/}
-              {/*        value: /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/,*/}
-              {/*        message: "Invalid email address",*/}
-              {/*      },*/}
-              {/*    })}*/}
-              {/*    id="filled-start-adornment"*/}
-              {/*    variant="filled"*/}
-              {/*    label="Email"*/}
-              {/*  />*/}
-              {/*  {errors.email?.message && <span style={{ color: "red" }}>{errors.email.message}</span>}*/}
-              {/*</FormControl>*/}
               <PasswordField name={"password"} errors={errors} register={register} />
-
-              {/*<FormControl className={style.emailInput} variant="filled">*/}
-              {/*  <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>*/}
-              {/*  <FilledInput*/}
-              {/*    id="filled-adornment-password1"*/}
-              {/*    type={showPassword ? "text" : "password"}*/}
-              {/*    autoComplete={"on"}*/}
-              {/*    endAdornment={*/}
-              {/*      <InputAdornment position="end">*/}
-              {/*        <IconButton*/}
-              {/*          aria-label="toggle password visibility1"*/}
-              {/*          onClick={handleClickShowPassword}*/}
-              {/*          onMouseDown={handleMouseDownPassword}*/}
-              {/*          edge="end"*/}
-              {/*        >*/}
-              {/*          {showPassword ? <VisibilityOff /> : <Visibility />}*/}
-              {/*        </IconButton>*/}
-              {/*      </InputAdornment>*/}
-              {/*    }*/}
-              {/*    {...register("password", {*/}
-              {/*      required: "Password is required",*/}
-              {/*      minLength: {*/}
-              {/*        value: 8,*/}
-              {/*        message: "Need more than 8 characters",*/}
-              {/*      },*/}
-              {/*    })}*/}
-              {/*  />*/}
-              {/*  {errors.password?.message && <span style={{ color: "red" }}>{errors.password.message}</span>}*/}
-              {/*</FormControl>*/}
-
               <FormControl className={style.emailInput} variant="filled">
                 <InputLabel htmlFor="filled-adornment-password">Confirm password</InputLabel>
                 <FilledInput

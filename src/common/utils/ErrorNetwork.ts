@@ -1,6 +1,6 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import { setAppErrorAC } from "../../app/app-reducer";
+import { setAppErrorAC } from "../../app/app-slice";
 
 export const ErrorNetwork = (e: any, dispatch: Dispatch) => {
   //уточнить типизацию на уроке

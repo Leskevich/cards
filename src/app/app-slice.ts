@@ -21,7 +21,7 @@ const slice = createSlice({
     },
   },
 });
-export const appReducer = slice.reducer;
+export const appSlice = slice.reducer;
 export const { setAppErrorAC, setAppStatusAC, setIsInitializedAC } = slice.actions;
 
 export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed";

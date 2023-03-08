@@ -7,7 +7,7 @@ import {
   RegisterPayloadType,
   SetNewPasswordType
 } from "../../api/auth-api";
-import {setAppErrorAC, setAppStatusAC, setIsInitializedAC} from "../../app/app-reducer";
+import {setAppErrorAC, setAppStatusAC, setIsInitializedAC} from "../../app/app-slice";
 import {setProfile} from "../Profile/profile-slice";
 import {ErrorNetwork} from "../../common/utils/ErrorNetwork";
 
@@ -104,7 +104,7 @@ export const setNewUserNameThunk = (title: string, avatar?: string) => async (di
     dispatch(setAppStatusAC({status: "loading"}));
     const res = await authAPI.setNewUserName(title, avatar);
     dispatch(setProfile(res.data.updatedUser));
-  } catch (e: any) {
+  } catch (e) {
     ErrorNetwork(e, dispatch);
   } finally {
     dispatch(setAppStatusAC({status: "idle"}));
@@ -116,7 +116,7 @@ export const isAuth = () => async (dispatch: Dispatch) => {
     const res = await authAPI.me();
     dispatch(setIsLoggedIn({isLoginIn: true}));
     dispatch(setProfile(res.data));
-  } catch (e: any) {
+  } catch (e) {
     ErrorNetwork(e, dispatch);
   } finally {
     dispatch(setAppStatusAC({status: "idle"}));

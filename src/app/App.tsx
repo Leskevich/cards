@@ -8,7 +8,7 @@ import {useAppSelector} from "../common/hook/useSelectHook";
 import {useAppDispatch} from "../common/hook/useDispatchHook";
 import {isAuth} from "../features/auth/auth-slice";
 import LinearProgress from '@mui/material/LinearProgress';
-import {RequestStatusType} from "./app-reducer";
+import {RequestStatusType} from "./app-slice";
 
 
 function App() {

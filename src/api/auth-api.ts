@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { instance } from "../common/instance/instance";
 
 export const authAPI = {
@@ -21,10 +21,10 @@ export const authAPI = {
       .then((res) => res.data);
   },
   forgotPassword(data: ForgotPasswordType) {
-    return axios.post("https://neko-back.herokuapp.com/2.0/auth/forgot", data);
+    return instance.post("https://neko-back.herokuapp.com/2.0/auth/forgot", data);
   },
   setNewPassword(data: SetNewPasswordType){
-    return axios.post<AxiosResponse<{info: string, error: string}>>("https://neko-back.herokuapp.com/2.0/auth/set-new-password", data)
+    return instance.post<AxiosResponse<{info: string, error: string}>>("https://neko-back.herokuapp.com/2.0/auth/set-new-password", data)
   }
 };
 

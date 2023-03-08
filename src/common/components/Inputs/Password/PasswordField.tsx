@@ -19,7 +19,6 @@ export const PasswordField = (props: InputPasswordType) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  //не понятно для чего пока
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };

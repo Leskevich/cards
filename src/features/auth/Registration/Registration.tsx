@@ -17,6 +17,8 @@ import { PATH } from "../../../common/constans/path";
 import { useAppSelector } from "../../../common/hook/useSelectHook";
 import { useAppDispatch } from "../../../common/hook/useDispatchHook";
 import {Navigate} from "react-router-dom";
+import {EmailField} from "../../../common/components/Inputs/Email/EmailField";
+import {PasswordField} from "../../../common/components/Inputs/Password/PasswordField";
 
 export type RegistrationFormType = {
   email: string;
@@ -35,17 +37,13 @@ export const Registration = () => {
   } = useForm<RegistrationFormType>({ mode: "onBlur" });
 
   const onSubmit: SubmitHandler<RegistrationFormType> = (data) => {
-      dispatch(registerTC(data));
-      reset();
+    dispatch(registerTC(data));
+    reset();
   };
-
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleClickShowRepeatPassword = () => setShowConfirmPassword((show) => !show);
 
-  //не понятно для чего пока
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
@@ -61,50 +59,52 @@ export const Registration = () => {
         <Grid item justifyContent={"center"}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup>
-              <FormControl className={style.emailInput}>
-                <TextField
-                  {...register("email", {
-                    required: "Email adress is required",
-                    pattern: {
-                      value: /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/,
-                      message: "Invalid email address",
-                    },
-                  })}
-                  id="filled-start-adornment"
-                  variant="filled"
-                  label="Email"
-                />
-                {errors.email?.message && <span style={{ color: "red" }}>{errors.email.message}</span>}
-              </FormControl>
+              <EmailField register={register} errors={errors} name={"email"} />
+              {/*<FormControl className={style.emailInput}>*/}
+              {/*  <TextField*/}
+              {/*    {...register("email", {*/}
+              {/*      required: "Email adress is required",*/}
+              {/*      pattern: {*/}
+              {/*        value: /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/,*/}
+              {/*        message: "Invalid email address",*/}
+              {/*      },*/}
+              {/*    })}*/}
+              {/*    id="filled-start-adornment"*/}
+              {/*    variant="filled"*/}
+              {/*    label="Email"*/}
+              {/*  />*/}
+              {/*  {errors.email?.message && <span style={{ color: "red" }}>{errors.email.message}</span>}*/}
+              {/*</FormControl>*/}
+              <PasswordField name={"password"} errors={errors} register={register} />
 
-              <FormControl className={style.emailInput} variant="filled">
-                <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-                <FilledInput
-                  id="filled-adornment-password1"
-                  type={showPassword ? "text" : "password"}
-                  autoComplete={"on"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility1"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 8,
-                      message: "Need more than 8 characters",
-                    },
-                  })}
-                />
-                {errors.password?.message && <span style={{ color: "red" }}>{errors.password.message}</span>}
-              </FormControl>
+              {/*<FormControl className={style.emailInput} variant="filled">*/}
+              {/*  <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>*/}
+              {/*  <FilledInput*/}
+              {/*    id="filled-adornment-password1"*/}
+              {/*    type={showPassword ? "text" : "password"}*/}
+              {/*    autoComplete={"on"}*/}
+              {/*    endAdornment={*/}
+              {/*      <InputAdornment position="end">*/}
+              {/*        <IconButton*/}
+              {/*          aria-label="toggle password visibility1"*/}
+              {/*          onClick={handleClickShowPassword}*/}
+              {/*          onMouseDown={handleMouseDownPassword}*/}
+              {/*          edge="end"*/}
+              {/*        >*/}
+              {/*          {showPassword ? <VisibilityOff /> : <Visibility />}*/}
+              {/*        </IconButton>*/}
+              {/*      </InputAdornment>*/}
+              {/*    }*/}
+              {/*    {...register("password", {*/}
+              {/*      required: "Password is required",*/}
+              {/*      minLength: {*/}
+              {/*        value: 8,*/}
+              {/*        message: "Need more than 8 characters",*/}
+              {/*      },*/}
+              {/*    })}*/}
+              {/*  />*/}
+              {/*  {errors.password?.message && <span style={{ color: "red" }}>{errors.password.message}</span>}*/}
+              {/*</FormControl>*/}
 
               <FormControl className={style.emailInput} variant="filled">
                 <InputLabel htmlFor="filled-adornment-password">Confirm password</InputLabel>

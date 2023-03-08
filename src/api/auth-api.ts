@@ -23,8 +23,15 @@ export const authAPI = {
   forgotPassword(data: ForgotPasswordType) {
     return axios.post("https://neko-back.herokuapp.com/2.0/auth/forgot", data);
   },
+  setNewPassword(data: SetNewPasswordType){
+    return axios.post<AxiosResponse<{info: string, error: string}>>("auth/set-new-password", data)
+  }
 };
 
+export type SetNewPasswordType = {
+  password: string,
+  resetPasswordToken: string | undefined
+}
 export type ForgotPasswordType = {
   email: string;
   from: string;

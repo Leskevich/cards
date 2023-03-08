@@ -27,6 +27,7 @@
 @mixin inputClass {
   min-width: 350px;
   margin-bottom: 24px;
+  margin-top: 21px;
 }
 
 @mixin submitButtonClass {
@@ -73,7 +74,7 @@
   margin-top: -30px;
   max-width: 328px;
   text-decoration: none;
-  text-align: center;
+  text-align: left;
 }
 
 @mixin authTitle {

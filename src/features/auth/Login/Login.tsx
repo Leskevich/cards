@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { PasswordField } from "../../../common/components/Inputs/Password/PasswordField";
 import { EmailField } from "../../../common/components/Inputs/Email/EmailField";
 import {login, setIsRegistration} from "../auth-slice";
+import { Button } from "@mui/material";
 
 type LoginForm = {
   email: string;
@@ -39,7 +40,9 @@ export const Login = () => {
   return (
     <div>
       <div className={style.formContainer}>
+
         <div className={style.title}>Sign in</div>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <EmailField register={register} errors={errors} name={"email"} />
           <PasswordField name={"password"} errors={errors} register={register} />
@@ -50,17 +53,24 @@ export const Login = () => {
           <NavLink to={"/passwordRecovery"} className={style.recovery}>
             Forgot Password?
           </NavLink>
-          <button disabled={!isValid} type={"submit"} className={style.button}>
+          <Button disabled={!isValid}
+                  type={"submit"}
+                  className={style.button}
+                  variant={"contained"}
+                  color={"primary"}
+          >
             Sign In
-          </button>
+          </Button>
         </form>
 
-        <NavLink to={"/"} className={style.onAccount}>
+        <p  className={style.info}>
           Already have an account?
-        </NavLink>
-        <NavLink to={"/registration"} className={style.onAccount}>
+        </p>
+
+        <NavLink to={"/registration"} className={style.toSignUp}>
           Sign Up
         </NavLink>
+
       </div>
     </div>
   );

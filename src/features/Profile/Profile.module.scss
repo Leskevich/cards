@@ -1,35 +1,39 @@
 @import "src/common/scss/formStyles";
 
 .profileParent {
-  @include authParentClass(413px, 408px, column, space-around);
+  @include authParentClass(413px, 408px, 0, 100px);
   padding: 20px;
   min-height: 408px;
-  .title{
-    @include authTitle()
+
+  .title {
+    @include authTitle();
+    width: 100%;
   }
-  .image{
+
+  .image {
     @include circleImageBlock();
-    .changeAvatar{
+    @include flexOptions(end);
+
+    .changeAvatar {
+      @include blockImage();
       box-sizing: border-box;
-      position: relative;
       width: 32px;
       height: 32px;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      &:hover{
+      align-self: end;
+
+      &:hover {
         border-radius: 100%;
         opacity: 0.5;
       }
     }
   }
-  .info{
-    @include infoTextAuth()
+
+  .info {
+    @include infoTextAuth();
+    margin: 0;
   }
-  &:nth-child(3){
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
+
+  &:nth-child(3) {
+    @include fontStyle($blackColor, 20px,);
   }
 }

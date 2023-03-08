@@ -62,7 +62,6 @@ password recovery link:
     ErrorNetwork(e, dispatch);
   }
 };
-
 export const login = (data: loginResponseType) => async (dispatch: Dispatch) => {
   dispatch(setAppStatusAC({status: "loading"}));
   try {

@@ -5,7 +5,8 @@
   padding: 20px;
   min-height: 408px;
   .title{
-    @include authTitle()
+    @include authTitle();
+    width: 100%;
   }
   .image{
     @include circleImageBlock()

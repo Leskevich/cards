@@ -7,6 +7,7 @@ import {useAppSelector} from "../../../common/hook/useSelectHook";
 import {PATH} from "../../../common/constans/path";
 import {changePasswordTC} from "../auth-slice";
 import {useAppDispatch} from "../../../common/hook/useDispatchHook";
+import Button from "@mui/material/Button/Button";
 
 type NewPasswordFormType = {
   password: string;
@@ -41,9 +42,15 @@ export const NewPassword = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <PasswordField name={"password"} errors={errors} register={register} />
       <p className={style.info}>Create new password and we will send you further instructions to email</p>
-      <button disabled={!isValid} type={"submit"} className={style.button}>
+      <Button
+        disabled={!isValid}
+        type={"submit"}
+        className={style.button}
+        variant={"contained"}
+        color={"primary"}
+      >
         Create new password
-      </button>
+      </Button>
     </form>
   </div>
   );

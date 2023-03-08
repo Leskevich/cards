@@ -25,6 +25,7 @@ export const Profile = React.memo(() => {
   const setNewName = (title: string) => {
     dispatch(setNewUserNameThunk(title));
   };
+
   const logOutMe = () => {
     dispatch(logoutThunk());
   };
@@ -32,6 +33,7 @@ export const Profile = React.memo(() => {
   if (!isLoggedIn) {
     return <Navigate to={"/login"} />;
   }
+
   if (!isInitialized) {
     return (
       <div style={{ position: "fixed", top: "30%", textAlign: "center", width: "100%" }}>
@@ -44,7 +46,7 @@ export const Profile = React.memo(() => {
     <div className={style.profileParent}>
       <p className={style.title}>Personal Information</p>
 
-      <div className={style.image} style={{ backgroundImage: ` url("${userProfile.avatar && defaultAvatar}")` }}>
+      <div className={style.image} style={{ backgroundImage: ` url("${userProfile.avatar === undefined ? defaultAvatar : userProfile.avatar}")` }}>
         <div className={style.changeAvatar} style={{ backgroundImage: `url(${changeAvatarImage})` }}></div>
       </div>
 

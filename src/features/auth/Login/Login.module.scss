@@ -1,54 +1,52 @@
 @import "../../../common/scss/formStyles";
 
 .formContainer {
-  height: 552px;
-  width: 413px;
-  margin: 60px auto 50px;
-  padding: 0 32px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include authParentClass(413px, 552px, 0);
 
-  .title {
-    margin-top: 30px;
-    font-size: 26px;
-    font-weight: 600;
-    line-height: 32px;
-  }
-
-  .email {
-    margin-top: 22px;
-  }
+  form {
+    @include flexOptions();
+    width: 80%;
 
     .checkbox {
       align-self: flex-start;
       margin-top: 12px;
     }
 
-  .recovery {
-    align-self: flex-end;
-    text-decoration: none;
-    color: #000000;
-    margin-top: 16px;
+    .recovery {
+      align-self: end;
+      text-decoration: none;
+      color: $blackColor;
+      margin-top: 16px;
+
+      &:hover {
+        @include linkStyle();
+      }
+    }
+
+    .button {
+      @include submitButtonClass();
+      height: 36px;
+      width: 347px;
+    }
   }
 
-  .button {
-    margin-top: 68px;
-    color: #fff;
-    border: none;
-    height: 36px;
-    width: 347px;
-    border-radius: 30px;
-    background: #366EFF;
-    box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  .title {
+    @include authTitle($blackColor);
+    margin-top: 30px;
   }
 
-  .onAccount {
-    text-decoration: none;
-    color: #000000;
+  .info {
+    @include infoTextAuth();
     margin-top: 38px;
   }
+
+  .toSignUp {
+    @include toSignOrLogInClass();
+    &:hover {
+      @include linkStyle();
+    }
+  }
+
   .error {
     color: $errorColorRed;
   }

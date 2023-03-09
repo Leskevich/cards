@@ -14,7 +14,7 @@ type NewPasswordFormType = {
 
 export const NewPassword = () => {
   const dispatch = useAppDispatch();
-  const {isChangePassword} = useAppSelector(state => state.auth)
+  const isChangePassword = useAppSelector(state => state.auth.isChangePassword)
   const {token} = useParams<{token: string}>();
 
   const {

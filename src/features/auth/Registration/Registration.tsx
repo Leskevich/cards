@@ -15,9 +15,10 @@ import {registerTC} from "../auth-slice";
 import {PATH} from "../../../common/constans/path";
 import {useAppSelector} from "../../../common/hook/useSelectHook";
 import {useAppDispatch} from "../../../common/hook/useDispatchHook";
-import {Navigate} from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 import {EmailField} from "../../../common/components/Inputs/Email/EmailField";
 import {PasswordField} from "../../../common/components/Inputs/Password/PasswordField";
+import {ButtonForm} from "../../../common/components/Button/ButtonForm";
 
 export type RegistrationFormType = {
   email: string;
@@ -26,7 +27,7 @@ export type RegistrationFormType = {
 };
 export const Registration = () => {
   const dispatch = useAppDispatch();
-  const {isRegister} = useAppSelector((state) => state.auth);
+  const isRegister = useAppSelector((state) => state.auth.isRegister);
   const {
     register,
     reset,
@@ -90,24 +91,25 @@ export const Registration = () => {
                   <span style={{ color: "red" }}>{errors.confirmPassword.message}</span>
                 )}
               </FormControl>
-              <Button
-                disabled={!isValid}
-                className={style.submitButton}
-                type={"submit"}
-                variant={"contained"}
-                color={"primary"}
-              >
-                Sign Up
-              </Button>
+              {/*<Button*/}
+              {/*  disabled={!isValid}*/}
+              {/*  className={style.submitButton}*/}
+              {/*  type={"submit"}*/}
+              {/*  variant={"contained"}*/}
+              {/*  color={"primary"}*/}
+              {/*>*/}
+              {/*  Sign Up*/}
+              {/*</Button>*/}
+              <ButtonForm name={'Sign Up'} isValid={isValid}/>
             </FormGroup>
           </form>
         </Grid>
       </Grid>
 
       <p className={style.toLogin}>Already have an account?</p>
-      <a className={style.toSignIn} href={"/login"}>
+      <NavLink to={PATH.LOGIN} className={style.toSignIn}>
         Sign in
-      </a>
+      </NavLink>
     </div>
   );
 };

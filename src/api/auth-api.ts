@@ -36,23 +36,10 @@ export const authAPI = {
   },
 }
 
-export type SetNewPasswordType = {
-  password: string
-  resetPasswordToken: string | undefined
-}
-export type ForgotPasswordType = {
+type ProfileType = {
   email: string
-  from: string
-  message: string
-}
-type UpdateResponseUserType = {
-  updatedUser: ProfileType
-  token: string
-  tokenDeathTime: number
-}
-export type UpdateUserType = {
-  name?: string
-  avatar?: string
+  name: string
+  avatar: string
 }
 export type RegisterPayloadType = {
   email: string
@@ -63,8 +50,21 @@ export type LoginPayloadType = {
   password: string
   rememberMe: boolean
 }
-type ProfileType = {
+export type UpdateUserType = {
+  name?: string
+  avatar?: string
+}
+type UpdateResponseUserType = {
+  updatedUser: ProfileType
+  token: string
+  tokenDeathTime: number
+}
+export type ForgotPasswordType = {
   email: string
-  name: string
-  avatar: string
+  from: string
+  message: string
+}
+export type SetNewPasswordType = {
+  password: string
+  resetPasswordToken: string | undefined
 }

@@ -4,7 +4,7 @@
   h2 {
     @include authTitle()
   }
-  @include authParentClass(413px, 528px, column, space-around);
+  @include authParentClass(413px, 528px);
   .formContainer {
     @include formContainerClass();
     .emailInput {

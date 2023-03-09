@@ -43,8 +43,9 @@ export const Login = () => {
     <div className={style.login}>
       <div className={style.formContainer}>
         <h2>Sign In</h2>
+
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl className={style.emailInput}>
+          <FormControl className={style.formControlTag}>
             <EmailField register={register} errors={errors} name={"email"} />
             <PasswordField name={"password"} errors={errors} register={register} />
             <div className={style.checkbox}>
@@ -54,9 +55,10 @@ export const Login = () => {
             <NavLink to={PATH.RECOVERY} className={style.recovery}>
               Forgot Password?
             </NavLink>
-            <ButtonForm name={'Sign In'} isValid={isValid}/>
+            <ButtonForm name={'Sign In'} isValid={isValid} />
           </FormControl>
         </form>
+
         <p className={style.toLogin}>Already have an account?</p>
         <NavLink to={PATH.REGISTRATION} className={style.onAccount} onClick={onRegisterHandler}>
           Sign Up

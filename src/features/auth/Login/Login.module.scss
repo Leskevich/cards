@@ -2,30 +2,48 @@
 
 .login {
   h2 {
-    @include authTitle()
+    @include authTitle($blackColor);
   }
+
   @include authParentClass(413px, 528px);
+
   .formContainer {
     @include formContainerClass();
-    .emailInput {
-      @include inputClass();
+    min-width: 80%;
+
+    form{
+      width: 100%;
+    .formControlTag {
+      @include flexOptions();
+      width: 100%;
+
+      .checkbox {
+        align-self: flex-start;
+        margin-top: 12px;
+      }
+
+      .recovery {
+
+        align-self: flex-end;
+        text-decoration: none;
+        color: $blackColor;
+        margin-top: 16px;
+        &:hover {
+          @include linkStyle();
+        }
+      }
+
     }
-    .checkbox {
-      align-self: flex-start;
-      margin-top: 12px;
-    }
-    .recovery {
-      align-self: flex-end;
-      text-decoration: none;
-      color: #000000;
-      margin-top: 16px;
-    }
-    .onAccount {
-      @include toSignOrLogInClass()
     }
     .toLogin {
       @include infoTextAuth();
-      margin: 5px;
+    }
+
+    .onAccount {
+      @include toSignOrLogInClass();
+      &:hover {
+        @include linkStyle();
+      }
     }
     .error {
       color: $errorColorRed;

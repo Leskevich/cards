@@ -95,7 +95,6 @@ export const Registration = () => {
           </form>
         </Grid>
       </Grid>
-
       <p className={style.toLogin}>Already have an account?</p>
       <NavLink to={PATH.LOGIN} className={style.toSignIn}>
         Sign in

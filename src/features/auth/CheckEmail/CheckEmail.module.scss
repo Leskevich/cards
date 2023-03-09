@@ -2,11 +2,8 @@
 
 .profileParent {
   @include authParentClass(413px, 408px);
-  padding: 20px;
-  min-height: 408px;
   .title{
     @include authTitle();
-    width: 100%;
   }
   .image{
     @include circleImageBlock()

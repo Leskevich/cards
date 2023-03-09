@@ -36,7 +36,7 @@ export const authAPI = {
   },
 }
 
-type ProfileType = {
+export type ProfileType = {
   email: string
   name: string
   avatar: string

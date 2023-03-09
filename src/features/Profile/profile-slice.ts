@@ -1,27 +1,25 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import defaultAvatar from "../../assets/img/default-avatar.png";
-
-type InitialStateType = {
-  name: string;
-  avatar: string;
-  email: string;
-};
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import defaultAvatar from "../../assets/img/default-avatar.png"
+import { ProfileType } from "../../api/auth-api"
 
 const initialState = {
-  name: "Some Name",
-  avatar: defaultAvatar,
-  email: "user_email@gmail.com",
-};
+  profile: {
+    name: "",
+    avatar: defaultAvatar,
+    email: "",
+  },
+}
 
 const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {
-    setProfile(state, action: PayloadAction<InitialStateType>) {
-      return (state = action.payload);
+    setProfile(state, action: PayloadAction<ProfileType>) {
+      state.profile = action.payload
     },
   },
-});
+})
 
-export const { setProfile } = profileSlice.actions;
-export const profileReducer = profileSlice.reducer;
+export const { setProfile } = profileSlice.actions
+
+export const profileReducer = profileSlice.reducer

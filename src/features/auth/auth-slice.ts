@@ -9,7 +9,8 @@ import {
 } from "../../api/auth-api"
 import { setAppErrorAC, setAppStatusAC, setIsInitializedAC } from "../../app/app-slice"
 import { setProfile } from "../Profile/profile-slice"
-import { ErrorNetwork } from "../../common/utils/ErrorNetwork"
+import { ErrorNetwork } from "../../common/utils/ErrorNetworckUtils/ErrorNetwork"
+import { ForgotPayload } from "../../common/utils/ForgotPayloadUtils/ForgotPayload"
 
 const initialState = {
   isLoggedIn: false,
@@ -23,11 +24,11 @@ const slice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setIsLoggedIn(state, action: PayloadAction<{ isLoginIn: boolean }>) {
-      state.isLoggedIn = action.payload.isLoginIn
-    },
     setIsRegistration(state, action: PayloadAction<{ isRegister: boolean }>) {
       state.isRegister = action.payload.isRegister
+    },
+    setIsLoggedIn(state, action: PayloadAction<{ isLoginIn: boolean }>) {
+      state.isLoggedIn = action.payload.isLoginIn
     },
     setIsMail(state, action: PayloadAction<{ isEMail: boolean }>) {
       state.isEMail = action.payload.isEMail
@@ -45,35 +46,38 @@ export const { setIsLoggedIn, setIsRegistration, setIsMail, setMail, changePassw
 export const authSlice = slice.reducer
 
 //Thunks
-export const forgot = (email: string) => async (dispatch: Dispatch) => {
-  const data: ForgotPasswordType = {
-    email,
-    from: "leskevichtema@gmail.com",
-    message: `<div style="background-color: lime; padding: 15px">
-password recovery link:   
-<a href="http://localhost:3000/cards#/newPassword/$token$">link</a>
-</div>`,
-  }
-  try {
-    await authAPI.forgotPassword(data)
-    dispatch(setIsMail({ isEMail: true }))
-    dispatch(setMail({ email }))
-  } catch (e) {
-    ErrorNetwork(e, dispatch)
-  }
-}
-
-export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
+export const isAuth = () => async (dispatch: Dispatch) => {
   dispatch(setAppStatusAC({ status: "loading" }))
   try {
-    const response = await authAPI.login(data)
-    if (response) {
-      dispatch(setIsLoggedIn({ isLoginIn: true }))
-    }
+    const res = await authAPI.me()
+    dispatch(setIsLoggedIn({ isLoginIn: true }))
+    dispatch(setProfile(res.data))
   } catch (e) {
     ErrorNetwork(e, dispatch)
   } finally {
     dispatch(setAppStatusAC({ status: "idle" }))
+    dispatch(setIsInitializedAC({ isInitialized: true }))
+  }
+}
+export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatusAC({ status: "loading" }))
+  try {
+    await authAPI.register(data)
+    dispatch(setAppStatusAC({ status: "succeeded" }))
+    dispatch(setIsRegistration({ isRegister: true }))
+  } catch (e) {
+    ErrorNetwork(e, dispatch)
+  }
+}
+export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatusAC({ status: "loading" }))
+  try {
+    const response = await authAPI.login(data)
+    dispatch(setProfile(response))
+    dispatch(setIsLoggedIn({ isLoginIn: true }))
+    dispatch(setAppStatusAC({ status: "succeeded" }))
+  } catch (e) {
+    ErrorNetwork(e, dispatch)
   }
 }
 export const logoutThunk = () => async (dispatch: Dispatch) => {
@@ -81,24 +85,12 @@ export const logoutThunk = () => async (dispatch: Dispatch) => {
   try {
     await authAPI.logOut()
     dispatch(setIsLoggedIn({ isLoginIn: false }))
+    dispatch(setAppStatusAC({ status: "succeeded" }))
   } catch (e) {
     ErrorNetwork(e, dispatch)
-  } finally {
-    dispatch(setAppStatusAC({ status: "idle" }))
   }
 }
-export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispatch) => {
-  dispatch(setAppStatusAC({ status: "loading" }))
-  try {
-    await authAPI.register(data)
-    dispatch(setAppStatusAC({ status: "idle" }))
-    dispatch(setIsRegistration({ isRegister: true }))
-  } catch (e) {
-    ErrorNetwork(e, dispatch)
-  } finally {
-    dispatch(setAppStatusAC({ status: "idle" }))
-  }
-}
+///оитимизировать
 export const setNewUserNameThunk = (name: string, avatar?: string) => async (dispatch: Dispatch) => {
   try {
     dispatch(setAppStatusAC({ status: "loading" }))
@@ -110,28 +102,27 @@ export const setNewUserNameThunk = (name: string, avatar?: string) => async (dis
     dispatch(setAppStatusAC({ status: "idle" }))
   }
 }
-export const isAuth = () => async (dispatch: Dispatch) => {
+//
+export const forgot = (email: string) => async (dispatch: Dispatch) => {
+  const data: ForgotPasswordType = ForgotPayload(email)
+  dispatch(setAppStatusAC({ status: "loading" }))
   try {
-    dispatch(setAppStatusAC({ status: "loading" }))
-    const res = await authAPI.me()
-    dispatch(setIsLoggedIn({ isLoginIn: true }))
-    dispatch(setProfile(res.data))
+    await authAPI.forgotPassword(data)
+    dispatch(setIsMail({ isEMail: true }))
+    dispatch(setMail({ email }))
+    dispatch(setAppStatusAC({ status: "succeeded" }))
   } catch (e) {
     ErrorNetwork(e, dispatch)
-  } finally {
-    dispatch(setAppStatusAC({ status: "idle" }))
-    dispatch(setIsInitializedAC({ isInitialized: true }))
   }
 }
 export const changePasswordTC = (data: SetNewPasswordType) => async (dispatch: Dispatch) => {
+  dispatch(setAppStatusAC({ status: "loading" }))
   try {
-    dispatch(setAppStatusAC({ status: "loading" }))
     await authAPI.setNewPassword(data)
     dispatch(changePassword({ isChangePassword: true }))
     dispatch(setAppErrorAC({ error: "Your password changed" }))
+    dispatch(setAppStatusAC({ status: "succeeded" }))
   } catch (e) {
     ErrorNetwork(e, dispatch)
-  } finally {
-    dispatch(setAppStatusAC({ status: "idle" }))
   }
 }

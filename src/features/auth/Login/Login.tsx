@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import style from "./Login.module.scss";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
 import { Navigate, NavLink } from "react-router-dom";
@@ -34,9 +34,9 @@ export const Login = () => {
     reset();
   };
 
-  useEffect(() => {
+  const onRegisterHandler = () => {
     dispatch(setIsRegistration({ isRegister: false }));
-  }, []);
+  }
 
   if (isLoginIn) return <Navigate to={"/Profile"} />;
   return (
@@ -58,7 +58,7 @@ export const Login = () => {
           </FormControl>
         </form>
         <p className={style.toLogin}>Already have an account?</p>
-        <NavLink to={PATH.REGISTRATION} className={style.onAccount}>
+        <NavLink to={PATH.REGISTRATION} className={style.onAccount} onClick={onRegisterHandler}>
           Sign Up
         </NavLink>
       </div>

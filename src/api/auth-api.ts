@@ -11,6 +11,7 @@ export const authAPI = {
     return instance.delete<{ info: string; error: string }>("https://neko-back.herokuapp.com/2.0/auth/me");
   },
   me() {
+
     return instance.post<LoginRequestType>("https://neko-back.herokuapp.com/2.0/auth/me", {});
   },
   setNewUserName(name: string, avatar?: string) {

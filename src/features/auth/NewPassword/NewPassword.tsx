@@ -7,6 +7,8 @@ import {useAppSelector} from "../../../common/hook/useSelectHook";
 import {PATH} from "../../../common/constans/path";
 import {changePasswordTC} from "../auth-slice";
 import {useAppDispatch} from "../../../common/hook/useDispatchHook";
+import {ButtonForm} from "../../../common/components/Button/ButtonForm";
+import FormControl from "@mui/material/FormControl/FormControl";
 
 type NewPasswordFormType = {
   password: string;
@@ -36,16 +38,19 @@ export const NewPassword = () => {
   }
 
   return (
-    <div className={style.formContainer}>
-    <div className={style.title}>Create new password</div>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <PasswordField name={"password"} errors={errors} register={register} />
-      <p className={style.info}>Create new password and we will send you further instructions to email</p>
-      <button disabled={!isValid} type={"submit"} className={style.button}>
-        Create new password
-      </button>
-    </form>
-  </div>
+    <div className={style.newPassword}>
+      <div className={style.formContainer}>
+        <h2>Create new password</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+          <FormControl className={style.emailInput}>
+            <PasswordField name={"password"} errors={errors} register={register} />
+            <p className={style.info}>Create new password and we will send you further instructions to email</p>
+            <ButtonForm name={'Create new password'} isValid={isValid}/>
+          </FormControl>
+        </form>
+      </div>
+    </div>
+
   );
 };
 

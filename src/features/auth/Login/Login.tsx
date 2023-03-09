@@ -42,7 +42,6 @@ export const Login = () => {
   return (
     <div className={style.login}>
       <div className={style.formContainer}>
-        {/*<div className={style.title}>Sign in</div>*/}
         <h2>Sign In</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl className={style.emailInput}>
@@ -55,17 +54,9 @@ export const Login = () => {
             <NavLink to={PATH.RECOVERY} className={style.recovery}>
               Forgot Password?
             </NavLink>
-            {/*<button disabled={!isValid} type={"submit"} className={style.button}>*/}
-            {/*  Sign In*/}
-            {/*</button>*/}
             <ButtonForm name={'Sign In'} isValid={isValid}/>
           </FormControl>
-
         </form>
-
-        {/*<NavLink to={"/"} className={style.onAccount}>*/}
-        {/*  Already have an account?*/}
-        {/*</NavLink>*/}
         <p className={style.toLogin}>Already have an account?</p>
         <NavLink to={PATH.REGISTRATION} className={style.onAccount}>
           Sign Up

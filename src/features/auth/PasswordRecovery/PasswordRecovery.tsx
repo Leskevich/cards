@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./PasswordRecovery.module.scss";
 import {SubmitHandler, useForm} from "react-hook-form";
-import Button from "@mui/material/Button/Button";
 import {EmailField} from "../../../common/components/Inputs/Email/EmailField";
 import {PATH} from "../../../common/constans/path";
 import {Navigate, NavLink} from "react-router-dom";
@@ -37,10 +36,6 @@ export const PasswordRecovery = () => {
           <FormControl className={style.emailInput}>
             <EmailField name={"email"} errors={errors} register={register}/>
             <p className={style.info}>Enter your email address and we will send you further instructions</p>
-            {/*<Button disabled={!isValid} className={style.button} type={"submit"} variant={"contained"}*/}
-            {/*        color={"primary"}>*/}
-            {/*  Send Instructions*/}
-            {/*</Button>*/}
             <ButtonForm name={'Send Instructions'} isValid={isValid}/>
           </FormControl>
         </form>

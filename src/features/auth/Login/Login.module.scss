@@ -1,6 +1,7 @@
 @import "../../../common/scss/formStyles";
-.login{
-  h2{
+
+.login {
+  h2 {
     @include authTitle()
   }
   @include authParentClass(413px, 528px, column, space-around);
@@ -9,60 +10,20 @@
     .emailInput {
       @include inputClass();
     }
-    //height: 552px;
-    //width: 413px;
-    //margin: 60px auto 50px;
-    //padding: 0 32px;
-    //background-color: #fff;
-    //display: flex;
-    //flex-direction: column;
-    //align-items: center;
-
-    //.title {
-    //  margin-top: 30px;
-    //  font-size: 26px;
-    //  font-weight: 600;
-    //  line-height: 32px;
-    //}
-
-    .email {
-      margin-top: 22px;
-    }
-
     .checkbox {
       align-self: flex-start;
       margin-top: 12px;
     }
-
     .recovery {
       align-self: flex-end;
       text-decoration: none;
       color: #000000;
       margin-top: 16px;
     }
-
-    //.button {
-    //  margin-top: 68px;
-    //  color: #fff;
-    //  border: none;
-    //  height: 36px;
-    //  width: 347px;
-    //  border-radius: 30px;
-    //  background: #366EFF;
-    //  box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    //}
-
-    .onAccount{
+    .onAccount {
       @include toSignOrLogInClass()
     }
-
-    //.onAccount {
-    //  text-decoration: none;
-    //  color: #000000;
-    //  margin-top: 12px;
-    //  margin-bottom: 30px;
-    //}
-    .toLogin{
+    .toLogin {
       @include infoTextAuth();
       margin: 5px;
     }

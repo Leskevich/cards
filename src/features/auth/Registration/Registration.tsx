@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import Grid from "@mui/material/Grid";
 import FormControl from "@mui/material/FormControl/FormControl";
 import FormGroup from "@mui/material/FormGroup/FormGroup";
-import Button from "@mui/material/Button/Button";
 import style from "./Registration.module.scss";
 import {SubmitHandler, useForm} from "react-hook-form";
 import InputLabel from "@mui/material/InputLabel";
@@ -91,15 +90,6 @@ export const Registration = () => {
                   <span style={{ color: "red" }}>{errors.confirmPassword.message}</span>
                 )}
               </FormControl>
-              {/*<Button*/}
-              {/*  disabled={!isValid}*/}
-              {/*  className={style.submitButton}*/}
-              {/*  type={"submit"}*/}
-              {/*  variant={"contained"}*/}
-              {/*  color={"primary"}*/}
-              {/*>*/}
-              {/*  Sign Up*/}
-              {/*</Button>*/}
               <ButtonForm name={'Sign Up'} isValid={isValid}/>
             </FormGroup>
           </form>

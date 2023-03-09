@@ -1,14 +1,19 @@
 @import "stylesVariables";
 
-//mixins for all forms of App
-@mixin authParentClass($width: none, $height: none, $flexDirection: column, $justifyContent: space-around, $marginBottom: 20px, $marginTop: 60px) {
+//флекс контейнер с основными надстройками
+@mixin flexOptions($justifyContent: space-around, $alignItems: center, $flexDirection: column) {
   display: flex;
-  flex-direction: $flexDirection;
   justify-content: $justifyContent;
-  align-items: center;
-  background: $whiteBGColor;
+  align-items: $alignItems;
+  flex-direction: $flexDirection;
+}
+
+//это стили для родителя всей странички в случае авторизации (то есть белый листик с бокс-шадоу)
+@mixin authParentClass($width: none, $minHeight: none, $marginBottom: 20px, $marginTop: 100px, $background: $whiteBGColor) {
+  @include flexOptions();
+  background: $background;
   width: $width;
-  min-height: $height;
+  min-height: $minHeight;
   margin-top: $marginTop;
   margin-bottom: $marginBottom;
   border-radius: 2px;
@@ -16,20 +21,21 @@
   padding: 20px 0;
 }
 
+//для тега form если вдруг он есть
 @mixin formContainerClass {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flexOptions();
   border-radius: 2px;
   background: $whiteBGColor;
 }
 
+//стили для инпутов(если нужны)
 @mixin inputClass {
   min-width: 350px;
   margin-bottom: 24px;
   margin-top: 21px;
 }
 
+//кнопки сабмит для форм
 @mixin submitButtonClass {
   background: $blueColor;
   box-shadow: $boxShadowColors;
@@ -37,59 +43,62 @@
   margin-top: 50px;
 }
 
-@mixin toSignOrLogInClass {
-  width: 65px;
-  height: 24px;
+//  основные стили для текста
+@mixin fontStyle($fontColor: $blueColor, $fontSize: 16px, $textAlign: center, $fontWeight: 600) {
   font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
   line-height: 24px;
-  text-align: center;
-  color: $blueColor;
-  margin-bottom: 10px;
+  text-align: $textAlign;
+  color: $fontColor;
   text-decoration: none;
 }
 
+//синенькая ссылка внизу страничек для перехода, например: log in -> sign up
+@mixin toSignOrLogInClass {
+  @include fontStyle($blueColor);
+  text-decoration: none;
+  width: 65px;
+  height: 24px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+//настройки для блока-картинки
+@mixin blockImage($backgroundPosition: center, $backgroundSize: cover, $backgroundRepeat: no-repeat) {
+  background-position: $backgroundPosition;
+  background-size: $backgroundSize;
+  background-repeat: $backgroundRepeat;
+}
+
+//это стили для круглого блока-аватарки в Profile
 @mixin circleImageBlock {
+  @include blockImage();
+  @include flexOptions();
+  @include fontStyle();
   width: 100px;
   height: 100px;
   border-radius: 100%;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: end;
-  align-items: end;
   margin-bottom: -30px;
-  text-decoration: none;
 }
 
+//стили для серенького текста, который содержит какую-то инвормацию (например: Already have an account?)
 @mixin infoTextAuth {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  color: $blackColor;
+  @include fontStyle($blackColor, 14px, left, 400);
   opacity: 0.5;
-  margin-top: -30px;
+  margin-top: 30px;
   max-width: 328px;
-  text-decoration: none;
-  text-align: left;
 }
 
-@mixin authTitle {
-  width: 240px;
+//заголовок в страничках авторизации (тот, что жирный сверху)
+@mixin authTitle($fColor: $blackColor ,$algnText: center) {
+  @include fontStyle($fColor, 26px, $algnText);
+  width: 100%;
   height: 27px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 27px;
-  text-align: center;
-  color: $blackColor;
   margin: 0;
-  text-decoration: none;
 }
 
+//настройка для ховера на ссылки типа login, sign in т т.д.
 @mixin linkStyle {
   color: $blueColor;
   text-decoration: underline;

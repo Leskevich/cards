@@ -1,10 +1,11 @@
 @import "../../../common/scss/formStyles";
 
 .registration{
+  @include authParentClass(413px, 528px,);
   h2{
-    @include authTitle()
+    @include authTitle($blackColor)
   }
-  @include authParentClass(413px, 528px, column, space-around);
+
   &:first-child{
     color: $blackColor;
   }
@@ -25,10 +26,12 @@
   }
   .toLogin{
     @include infoTextAuth();
-    margin: 0;
   }
   .toSignIn{
-    @include toSignOrLogInClass()
+    @include toSignOrLogInClass();
+    &:hover{
+      @include linkStyle();
+    }
   }
 
 }

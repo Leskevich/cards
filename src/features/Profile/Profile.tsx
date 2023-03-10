@@ -1,17 +1,17 @@
-import React, { useEffect } from "react"
+import React from "react"
 import style from "./Profile.module.scss"
-import { EditableSpan } from "../../common/components/EditableSpan/EditableSpan"
+import {EditableSpan} from "../../common/components/EditableSpan/EditableSpan"
 
 import Button from "@mui/material/Button"
 import changeAvatarImage from "../../assets/img/changeAvatar.png"
 import defaultAvatar from "../../assets/img/default-avatar.png"
-import { Navigate } from "react-router-dom"
+import {Navigate} from "react-router-dom"
 
-import { isAuth, logoutThunk, setNewUserNameThunk } from "../auth/auth-slice"
-import { CircularProgress } from "@mui/material"
-import { useAppSelector } from "../../common/hook/useSelectHook"
-import { useAppDispatch } from "../../common/hook/useDispatchHook"
-import { PATH } from "../../common/constans/path"
+import {isAuth, logoutThunk, setNewUserNameThunk} from "../auth/auth-slice"
+import {CircularProgress} from "@mui/material"
+import {useAppSelector} from "../../common/hook/useSelectHook"
+import {useAppDispatch} from "../../common/hook/useDispatchHook"
+import {PATH} from "../../common/constans/path"
 
 export const Profile = React.memo(() => {
   const userProfile = useAppSelector((state) => state.profile.profile)
@@ -19,10 +19,13 @@ export const Profile = React.memo(() => {
   const isInitialized = useAppSelector((state) => state.app.isInitialized)
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(isAuth())
-  }, [dispatch])
+    // useEffect(() => {
+    //   dispatch(isAuth())
+    // }, [dispatch])
 
+
+
+if (!isLoggedIn)dispatch(isAuth())
   const setNewName = (title: string) => {
     dispatch(setNewUserNameThunk(title))
   }

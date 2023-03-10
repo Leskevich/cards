@@ -52,10 +52,11 @@ export const isAuth = () => async (dispatch: Dispatch) => {
     const res = await authAPI.me()
     dispatch(setIsLoggedIn({ isLoginIn: true }))
     dispatch(setProfile(res.data))
+    dispatch(setAppStatusAC({ status: "succeeded" }))
+    dispatch(setAppErrorAC({ error:"добро пожаловать" }))
   } catch (e) {
     ErrorNetwork(e, dispatch)
   } finally {
-    dispatch(setAppStatusAC({ status: "idle" }))
     dispatch(setIsInitializedAC({ isInitialized: true }))
   }
 }
@@ -65,6 +66,7 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
     await authAPI.register(data)
     dispatch(setAppStatusAC({ status: "succeeded" }))
     dispatch(setIsRegistration({ isRegister: true }))
+    dispatch(setAppErrorAC({ error:"Вы зарегистрировались" }))
   } catch (e) {
     ErrorNetwork(e, dispatch)
   }
@@ -75,7 +77,9 @@ export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
     const response = await authAPI.login(data)
     dispatch(setProfile(response))
     dispatch(setIsLoggedIn({ isLoginIn: true }))
+    dispatch(setIsRegistration({ isRegister: true }))
     dispatch(setAppStatusAC({ status: "succeeded" }))
+    dispatch(setAppErrorAC({ error:"Вы зылогинены" }))
   } catch (e) {
     ErrorNetwork(e, dispatch)
   }

@@ -1,7 +1,7 @@
 @import "src/common/scss/formStyles";
 
 .profileParent {
-  @include authParentClass(413px, 408px, 0, 100px);
+  @include authParentClass(413px, 408px, 20px, 100px);
   padding: 20px;
   min-height: 408px;
 

@@ -10,33 +10,33 @@ import {CircularProgress} from "@mui/material"
 import {useAppSelector} from "../../common/hook/useSelect"
 import {useAppDispatch} from "../../common/hook/useDispatch"
 import {PATH} from "../../common/constans/path"
-import {selectIsInitialized, selectIsLoggedIn, selectProfile} from "../../common/selectors/selectors";
+import {selectIsInitialized, selectIsLoggedIn, selectProfile, selectStatus} from "../../common/selectors/selectors";
+import {STATUSES} from "../../app/app-slice";
 
-export const Profile = React.memo(() => {
+export const Profile = () => {
     const userProfile = useAppSelector(selectProfile)
     const isLoggedIn = useAppSelector(selectIsLoggedIn)
-    const isInitialized = useAppSelector(selectIsInitialized)
+    const status = useAppSelector(selectStatus)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(isAuth())
+      dispatch(isAuth())
     }, [dispatch])
-
 
     const setNewName = (title: string) => {
         dispatch(setNewUserNameThunk(title))
     }
     const logOutMe = () => {
         dispatch(logoutThunk())
-        return <Navigate to={PATH.LOGIN}/>
     }
 
-    if (!isLoggedIn) {
-        return <Navigate to={PATH.LOGIN}/>
+    if (!isLoggedIn && (status === STATUSES.failed || status === STATUSES.succeeded)) {
+        return <Navigate replace to={PATH.LOGIN}/>
     }
-    if (!isInitialized) {
+
+    if (!status || status === STATUSES.loading) {
         return (
-            <div style={{position: "fixed", top: "30%", textAlign: "center", width: "100%"}}>
+            <div style={{position: "fixed", top: "50%", textAlign: "center", width: "100%"}}>
                 <CircularProgress/>
             </div>
         )
@@ -68,4 +68,4 @@ export const Profile = React.memo(() => {
             </Button>
         </div>
     )
-})
+}

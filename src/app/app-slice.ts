@@ -22,5 +22,12 @@ const slice = createSlice({
 export const appSlice = slice.reducer;
 export const {setAppErrorAC, setAppStatusAC, setIsInitializedAC} = slice.actions;
 
-export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed";
+export const STATUSES = {
+    idle: "idle",
+    loading: "loading",
+    succeeded: "succeeded",
+    failed: "failed",
+} as const
+
+export type RequestStatusType = keyof typeof STATUSES;
 

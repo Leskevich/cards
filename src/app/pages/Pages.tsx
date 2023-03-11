@@ -15,7 +15,7 @@ export const Pages = () => {
   return (
     <div className={style.pagesContainer}>
       <Routes>
-        <Route path={"/"} element={<Navigate to={"Profile"} />} />
+        <Route path={"/"} element={<Navigate to={PATH.PROFILE} />} />
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.REGISTRATION} element={<Registration />} />
         <Route path={PATH.RECOVERY} element={<PasswordRecovery />} />

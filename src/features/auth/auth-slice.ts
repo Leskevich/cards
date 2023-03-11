@@ -7,7 +7,7 @@ import {
     RegisterPayloadType,
     SetNewPasswordType,
 } from "./auth-api"
-import {setAppErrorAC, setAppStatusAC, setIsInitializedAC} from "../../app/app-slice"
+import {setAppErrorAC, setAppStatusAC} from "../../app/app-slice"
 import {setProfile} from "../Profile/profile-slice"
 import {errorNetwork} from "../../common/utils/errorNetwork"
 import {forgotPayload} from "../../common/utils/forgotPayload"
@@ -51,11 +51,9 @@ export const isAuth = () => async (dispatch: Dispatch) => {
         dispatch(setIsLoggedIn({isLoginIn: true}))
         dispatch(setProfile(res.data))
         dispatch(setAppStatusAC({status: "succeeded"}))
-        dispatch(setAppErrorAC({error: "добро пожаловать"}))
+        dispatch(setAppErrorAC({error: "Welcome!"}))
     } catch (e) {
         errorNetwork(e, dispatch)
-    } finally {
-        dispatch(setIsInitializedAC({isInitialized: true}))
     }
 }
 export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispatch) => {
@@ -64,7 +62,7 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
         await authAPI.register(data)
         dispatch(setAppStatusAC({status: "succeeded"}))
         dispatch(setIsRegistration({isRegister: true}))
-        dispatch(setAppErrorAC({error: "Вы зарегистрировались"}))
+        dispatch(setAppErrorAC({error: "You have registered"}))
     } catch (e) {
         errorNetwork(e, dispatch)
     }
@@ -77,7 +75,7 @@ export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
         dispatch(setIsLoggedIn({isLoginIn: true}))
         dispatch(setIsRegistration({isRegister: true}))
         dispatch(setAppStatusAC({status: "succeeded"}))
-        dispatch(setAppErrorAC({error: "Вы зылогинены"}))
+        dispatch(setAppErrorAC({error: "You are logged in"}))
     } catch (e) {
         errorNetwork(e, dispatch)
     }

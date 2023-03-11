@@ -3,18 +3,19 @@
 .registration{
   @include authParentClass(413px, 528px);
 
-
   h2{
     @include authTitle($blackColor)
   }
   .formContainer {
     @include formContainerClass();
-   min-width: 80%;
-    .emailInput {
-      @include inputClass();
-    }
-    .passwordInput {
-      @include inputClass();
+    min-width: 80%;
+
+    form{
+      width: 100%;
+      .formControlTag {
+        @include flexOptions();
+        width: 100%;
+      }
     }
   }
   .toLogin{

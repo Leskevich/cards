@@ -6,8 +6,8 @@ const profileSlice = createSlice({
     name: "profile",
     initialState: {
         profile: {
-            name: "",
-            avatar: defaultAvatar,
+            name: '' as string ,
+            avatar: defaultAvatar as string | null,
             email: "",
         },
     },

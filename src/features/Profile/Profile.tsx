@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React from "react"
 import style from "./Profile.module.scss"
 import {EditableSpan} from "../../common/components/EditableSpan/EditableSpan"
 import Button from "@mui/material/Button"
@@ -13,22 +13,15 @@ import {PATH} from "../../common/constans/path"
 import {selectIsInitialized, selectIsLoggedIn, selectProfile} from "../../common/selectors/selectors";
 
 export const Profile = React.memo(() => {
+
     const userProfile = useAppSelector(selectProfile)
     const isLoggedIn = useAppSelector(selectIsLoggedIn)
     const isInitialized = useAppSelector(selectIsInitialized)
+
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
+    if (!isLoggedIn) {
         dispatch(isAuth())
-    }, [dispatch])
-
-
-    const setNewName = (title: string) => {
-        dispatch(setNewUserNameThunk(title))
-    }
-    const logOutMe = () => {
-        dispatch(logoutThunk())
-        return <Navigate to={PATH.LOGIN}/>
     }
 
     if (!isLoggedIn) {
@@ -42,6 +35,13 @@ export const Profile = React.memo(() => {
         )
     }
 
+    const setNewName = (title: string) => {
+        dispatch(setNewUserNameThunk(title))
+    }
+    const logOutMe = () => {
+        dispatch(logoutThunk())
+        return <Navigate to={PATH.LOGIN}/>
+    }
     return (
         <div className={style.profileParent}>
             <p className={style.title}>Personal Information</p>

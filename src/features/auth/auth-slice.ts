@@ -1,12 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {Dispatch} from "redux"
-import {
-    authAPI,
-    ForgotPasswordType,
-    LoginPayloadType,
-    RegisterPayloadType,
-    SetNewPasswordType,
-} from "./auth-api"
+import {authAPI, ForgotPasswordType, LoginPayloadType, RegisterPayloadType, SetNewPasswordType,} from "./auth-api"
 import {setAppErrorAC, setAppStatusAC, setIsInitializedAC} from "../../app/app-slice"
 import {setProfile} from "../Profile/profile-slice"
 import {errorNetwork} from "../../common/utils/errorNetwork"
@@ -49,7 +43,7 @@ export const isAuth = () => async (dispatch: Dispatch) => {
     try {
         const res = await authAPI.me()
         dispatch(setIsLoggedIn({isLoginIn: true}))
-        dispatch(setProfile(res.data))
+        dispatch(setProfile(res))
         dispatch(setAppStatusAC({status: "succeeded"}))
         dispatch(setAppErrorAC({error: "добро пожаловать"}))
     } catch (e) {

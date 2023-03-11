@@ -1,15 +1,15 @@
 import React from "react";
 import "./App.css";
 import {Pages} from "./pages/Pages";
-import {Header} from "../features/Header/Header";
+import {Header} from "../common/components/Header/Header";
 import {ErrorSnackbar} from "../common/components/ErrorSnackbar/ErrorSnackbar";
-import {useAppSelector} from "../common/hook/useSelectHook";
+import {useAppSelector} from "../common/hook/useSelect";
 import LinearProgress from '@mui/material/LinearProgress';
-import {RequestStatusType} from "./app-slice";
+import {selectStatus} from "../common/selectors/selectors";
 
 
 function App() {
-    const status = useAppSelector<RequestStatusType>(state => state.app.status)
+    const status = useAppSelector(selectStatus)
 
     return (
         <div className="App">

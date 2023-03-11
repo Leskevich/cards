@@ -1,6 +1,6 @@
-import { ForgotPasswordType } from "../../../api/auth-api"
+import { ForgotPasswordType } from "../../features/auth/auth-api"
 
-export const ForgotPayload = (email: string): ForgotPasswordType => {
+export const forgotPayload = (email: string): ForgotPasswordType => {
   return {
     email,
     from: "leskevichtema@gmail.com",

@@ -1,10 +1,10 @@
 import React from "react";
 import style from "./Header.module.scss";
 import Button from "@mui/material/Button";
-import incubatorLogo from "./../../assets/img/Incubator-logo.svg";
-import { useAppSelector } from "../../common/hook/useSelectHook";
-import { useAppDispatch } from "../../common/hook/useDispatchHook";
-import { logoutThunk, setIsLoggedIn } from "../auth/auth-slice";
+import incubatorLogo from "../../../assets/img/Incubator-logo.svg";
+import { useAppSelector } from "../../hook/useSelect";
+import { useAppDispatch } from "../../hook/useDispatch";
+import { logoutThunk, setIsLoggedIn } from "../../../features/auth/auth-slice";
 import { useNavigate } from "react-router-dom";
 
 export const Header = () => {

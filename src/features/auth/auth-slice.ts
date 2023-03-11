@@ -6,23 +6,21 @@ import {
     LoginPayloadType,
     RegisterPayloadType,
     SetNewPasswordType,
-} from "../../api/auth-api"
+} from "./auth-api"
 import {setAppErrorAC, setAppStatusAC, setIsInitializedAC} from "../../app/app-slice"
 import {setProfile} from "../Profile/profile-slice"
-import {ErrorNetwork} from "../../common/utils/ErrorNetworckUtils/ErrorNetwork"
-import {ForgotPayload} from "../../common/utils/ForgotPayloadUtils/ForgotPayload"
-
-const initialState = {
-    isLoggedIn: false,
-    isRegister: false,
-    isEMail: false,
-    email: "",
-    isChangePassword: false,
-}
+import {errorNetwork} from "../../common/utils/errorNetwork"
+import {forgotPayload} from "../../common/utils/forgotPayload"
 
 const slice = createSlice({
     name: "auth",
-    initialState,
+    initialState: {
+        isLoggedIn: false,
+        isRegister: false,
+        isEMail: false,
+        email: "",
+        isChangePassword: false,
+    },
     reducers: {
         setIsRegistration(state, action: PayloadAction<{ isRegister: boolean }>) {
             state.isRegister = action.payload.isRegister
@@ -55,7 +53,7 @@ export const isAuth = () => async (dispatch: Dispatch) => {
         dispatch(setAppStatusAC({status: "succeeded"}))
         dispatch(setAppErrorAC({error: "добро пожаловать"}))
     } catch (e) {
-        ErrorNetwork(e, dispatch)
+        errorNetwork(e, dispatch)
     } finally {
         dispatch(setIsInitializedAC({isInitialized: true}))
     }
@@ -68,7 +66,7 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
         dispatch(setIsRegistration({isRegister: true}))
         dispatch(setAppErrorAC({error: "Вы зарегистрировались"}))
     } catch (e) {
-        ErrorNetwork(e, dispatch)
+        errorNetwork(e, dispatch)
     }
 }
 export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
@@ -81,7 +79,7 @@ export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
         dispatch(setAppStatusAC({status: "succeeded"}))
         dispatch(setAppErrorAC({error: "Вы зылогинены"}))
     } catch (e) {
-        ErrorNetwork(e, dispatch)
+        errorNetwork(e, dispatch)
     }
 }
 export const logoutThunk = () => async (dispatch: Dispatch) => {
@@ -91,7 +89,7 @@ export const logoutThunk = () => async (dispatch: Dispatch) => {
         dispatch(setIsLoggedIn({isLoginIn: false}))
         dispatch(setAppStatusAC({status: "succeeded"}))
     } catch (e) {
-        ErrorNetwork(e, dispatch)
+        errorNetwork(e, dispatch)
     }
 }
 ///оитимизировать
@@ -101,14 +99,14 @@ export const setNewUserNameThunk = (name: string, avatar?: string) => async (dis
         const res = await authAPI.setNewUserName({name, avatar})
         dispatch(setProfile(res.data.updatedUser))
     } catch (e) {
-        ErrorNetwork(e, dispatch)
+        errorNetwork(e, dispatch)
     } finally {
         dispatch(setAppStatusAC({status: "idle"}))
     }
 }
 //
 export const forgot = (email: string) => async (dispatch: Dispatch) => {
-    const data: ForgotPasswordType = ForgotPayload(email)
+    const data: ForgotPasswordType = forgotPayload(email)
     dispatch(setAppStatusAC({status: "loading"}))
     try {
         await authAPI.forgotPassword(data)
@@ -116,7 +114,7 @@ export const forgot = (email: string) => async (dispatch: Dispatch) => {
         dispatch(setMail({email}))
         dispatch(setAppStatusAC({status: "succeeded"}))
     } catch (e) {
-        ErrorNetwork(e, dispatch)
+        errorNetwork(e, dispatch)
     }
 }
 export const changePasswordTC = (data: SetNewPasswordType) => async (dispatch: Dispatch) => {
@@ -127,6 +125,6 @@ export const changePasswordTC = (data: SetNewPasswordType) => async (dispatch: D
         dispatch(setAppErrorAC({error: "Your password changed"}))
         dispatch(setAppStatusAC({status: "succeeded"}))
     } catch (e) {
-        ErrorNetwork(e, dispatch)
+        errorNetwork(e, dispatch)
     }
 }

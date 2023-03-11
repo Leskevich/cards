@@ -2,15 +2,16 @@ import React from "react";
 import style from "./CheckEmail.module.scss";
 import Button from "@mui/material/Button";
 import checkEmailIMG from "../../../assets/img/CheckEmail.png";
-import { useAppSelector } from "../../../common/hook/useSelectHook";
+import { useAppSelector } from "../../../common/hook/useSelect";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../../../common/constans/path";
 import { setIsMail } from "../auth-slice";
-import { useAppDispatch } from "../../../common/hook/useDispatchHook";
+import { useAppDispatch } from "../../../common/hook/useDispatch";
+import {selectEmail} from "../../../common/selectors/selectors";
 
 export const CheckEmail = () => {
   const dispatch = useAppDispatch();
-  const eMail = useAppSelector((state) => state.auth.email);
+  const eMail = useAppSelector(selectEmail);
   const navigate = useNavigate();
   const clickPathLogin = () => {
     navigate(PATH.LOGIN);

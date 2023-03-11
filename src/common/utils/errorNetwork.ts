@@ -1,8 +1,8 @@
 import { Dispatch } from "@reduxjs/toolkit"
 import axios, { AxiosError } from "axios"
-import { setAppErrorAC, setAppStatusAC } from "../../../app/app-slice"
+import { setAppErrorAC, setAppStatusAC } from "../../app/app-slice"
 
-export const ErrorNetwork = (e: any, dispatch: Dispatch) => {
+export const errorNetwork = (e: any, dispatch: Dispatch) => {
   //уточнить типизацию на уроке
   const err = e as Error | AxiosError<{ error: string }>
   if (axios.isAxiosError(err)) {

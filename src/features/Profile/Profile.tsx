@@ -7,14 +7,15 @@ import defaultAvatar from "../../assets/img/default-avatar.png"
 import {Navigate} from "react-router-dom"
 import {isAuth, logoutThunk, setNewUserNameThunk} from "../auth/auth-slice"
 import {CircularProgress} from "@mui/material"
-import {useAppSelector} from "../../common/hook/useSelectHook"
-import {useAppDispatch} from "../../common/hook/useDispatchHook"
+import {useAppSelector} from "../../common/hook/useSelect"
+import {useAppDispatch} from "../../common/hook/useDispatch"
 import {PATH} from "../../common/constans/path"
+import {selectIsInitialized, selectIsLoggedIn, selectProfile} from "../../common/selectors/selectors";
 
 export const Profile = React.memo(() => {
-    const userProfile = useAppSelector((state) => state.profile.profile)
-    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
-    const isInitialized = useAppSelector((state) => state.app.isInitialized)
+    const userProfile = useAppSelector(selectProfile)
+    const isLoggedIn = useAppSelector(selectIsLoggedIn)
+    const isInitialized = useAppSelector(selectIsInitialized)
     const dispatch = useAppDispatch()
 
     useEffect(() => {

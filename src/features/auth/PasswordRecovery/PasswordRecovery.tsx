@@ -4,11 +4,12 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {EmailField} from "../../../common/components/Inputs/Email/EmailField";
 import {PATH} from "../../../common/constans/path";
 import {Navigate, NavLink} from "react-router-dom";
-import {useAppDispatch} from "../../../common/hook/useDispatchHook";
+import {useAppDispatch} from "../../../common/hook/useDispatch";
 import {forgot} from "../auth-slice";
-import {useAppSelector} from "../../../common/hook/useSelectHook";
+import {useAppSelector} from "../../../common/hook/useSelect";
 import {ButtonForm} from "../../../common/components/Button/ButtonForm";
 import FormControl from "@mui/material/FormControl/FormControl";
+import {selectIsEMail} from "../../../common/selectors/selectors";
 
 type PasswordRecoveryFormType = {
   email: string;
@@ -16,7 +17,7 @@ type PasswordRecoveryFormType = {
 
 export const PasswordRecovery = () => {
   const dispatch = useAppDispatch();
-  const isEmail = useAppSelector((state) => state.auth.isEMail);
+  const isEmail = useAppSelector(selectIsEMail);
   const {
     register,
     formState: {isValid, errors},

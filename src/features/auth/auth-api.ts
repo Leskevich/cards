@@ -1,5 +1,5 @@
 import {AxiosResponse} from "axios"
-import {instanceHeroku} from "../common/instance/instance"
+import {instanceHeroku} from "../../common/instance/instance"
 
 export const authAPI = {
     register(payload: RegisterPayloadType) {
@@ -13,7 +13,7 @@ export const authAPI = {
         return instanceHeroku.delete<{ info: string }>("auth/me")
     },
     me() {
-        return instanceHeroku.post("auth/me", {})
+        return instanceHeroku.post("auth/me")
     },
     setNewUserName(payload: UpdateUserType) {
         return instanceHeroku.put<any, AxiosResponse<UpdateResponseUserType>, UpdateUserType>(

@@ -3,12 +3,13 @@ import style from "./NewPassword.module.scss";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {PasswordField} from "../../../common/components/Inputs/Password/PasswordField";
 import {Navigate, useParams} from "react-router-dom";
-import {useAppSelector} from "../../../common/hook/useSelectHook";
+import {useAppSelector} from "../../../common/hook/useSelect";
 import {PATH} from "../../../common/constans/path";
 import {changePasswordTC} from "../auth-slice";
-import {useAppDispatch} from "../../../common/hook/useDispatchHook";
+import {useAppDispatch} from "../../../common/hook/useDispatch";
 import {ButtonForm} from "../../../common/components/Button/ButtonForm";
 import FormControl from "@mui/material/FormControl/FormControl";
+import {selectIsChangePassword} from "../../../common/selectors/selectors";
 
 type NewPasswordFormType = {
   password: string;
@@ -16,7 +17,7 @@ type NewPasswordFormType = {
 
 export const NewPassword = () => {
   const dispatch = useAppDispatch();
-  const isChangePassword = useAppSelector(state => state.auth.isChangePassword)
+  const isChangePassword = useAppSelector(selectIsChangePassword)
   const {token} = useParams<{token: string}>();
 
   const {

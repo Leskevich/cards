@@ -2,8 +2,8 @@ import React from "react";
 import style from "./Login.module.scss";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
 import {Navigate, NavLink} from "react-router-dom";
-import {useAppDispatch} from "../../../common/hook/useDispatchHook";
-import {useAppSelector} from "../../../common/hook/useSelectHook";
+import {useAppDispatch} from "../../../common/hook/useDispatch";
+import {useAppSelector} from "../../../common/hook/useSelect";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {PasswordField} from "../../../common/components/Inputs/Password/PasswordField";
 import {EmailField} from "../../../common/components/Inputs/Email/EmailField";
@@ -11,6 +11,7 @@ import {login, setIsRegistration} from "../auth-slice";
 import {ButtonForm} from "../../../common/components/Button/ButtonForm";
 import FormControl from "@mui/material/FormControl/FormControl";
 import {PATH} from "../../../common/constans/path";
+import {selectIsLoggedIn} from "../../../common/selectors/selectors";
 
 type LoginForm = {
     email: string;
@@ -20,18 +21,16 @@ type LoginForm = {
 
 export const Login = () => {
     const dispatch = useAppDispatch();
-    const isLoginIn = useAppSelector((state) => state.auth.isLoggedIn);
+    const isLoginIn = useAppSelector(selectIsLoggedIn);
     const {
         register,
         formState: {errors, isValid},
         handleSubmit,
-        reset,
     } = useForm<LoginForm>({
-        mode: "onBlur",
+        mode: "onChange",
     });
     const onSubmit: SubmitHandler<LoginForm> = (data) => {
         dispatch(login(data));
-        reset();
     };
 
     const onRegisterHandler = () => {

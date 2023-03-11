@@ -12,6 +12,7 @@ import {PasswordField} from "../../../common/components/Inputs/Password/Password
 import {ButtonForm} from "../../../common/components/Button/ButtonForm";
 import {selectIsRegister} from "../../../common/selectors/selectors";
 import {ConfirmPasswordField} from "../../../common/components/Inputs/Password/ConfirmPasswordField";
+import {Search} from "../../../common/components/Search/Search";
 
 export type RegistrationFormType = {
   email: string;

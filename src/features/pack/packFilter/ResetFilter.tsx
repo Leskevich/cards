@@ -6,6 +6,7 @@ import {clear} from "./filter-slice";
 
 export const ResetFilter = () => {
   const dispatch = useDispatch();
+
   const resetHandler = () => {
     dispatch(clear())
   }

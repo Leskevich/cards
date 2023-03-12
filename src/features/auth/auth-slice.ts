@@ -50,6 +50,7 @@ export const isAuth = () => async (dispatch: Dispatch) => {
         const res = await authAPI.me()
         dispatch(setIsLoggedIn({isLoginIn: true}))
         dispatch(setProfile(res.data))
+        console.log(res.data)
         dispatch(setAppStatusAC({status: "succeeded"}))
         dispatch(setAppErrorAC({error: "Welcome!"}))
     } catch (e) {

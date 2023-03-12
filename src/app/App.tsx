@@ -6,6 +6,7 @@ import {ErrorSnackbar} from "../common/components/ErrorSnackbar/ErrorSnackbar";
 import {LinearProgress} from "../common/components/LinearProgress/LinearProgress";
 
 function App() {
+
     return (
         <div className="App">
             <Header/>

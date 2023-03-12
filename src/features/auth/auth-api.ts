@@ -36,6 +36,7 @@ export type ProfileType = {
     email: string
     name: string
     avatar: string
+    _id: string
 }
 export type RegisterPayloadType = {
     email: string

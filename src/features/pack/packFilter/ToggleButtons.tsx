@@ -4,28 +4,29 @@ import ToggleButton from "@mui/material/ToggleButton";
 import {toggleButtonStyle} from "./toggleButtonStyle";
 import style from "./ToggleButtons.module.scss"
 
-export const ToggleButtons = () => {
-  const [alignment, setAlignment] = React.useState('my');
+type ToggleButtons = {
+  field: any;
+}
 
-  const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string,
-  ) => {
-    if (newAlignment){
-      setAlignment(newAlignment);
+export const ToggleButtons: React.FC<ToggleButtons> = ({field}) => {
+
+  const handleChange = (event: React.MouseEvent<HTMLElement>, value: string) => {
+    if (value !== null) {
+      field.onChange(value);
     }
-  };
+  }
+
   return (
     <div>
       <div className={style.textToggleButton}>Show packs cards</div>
       <ToggleButtonGroup
-        value={alignment}
+        {...field}
         exclusive
         onChange={handleChange}
         aria-label="Platform"
       >
-        <ToggleButton value="my" sx={toggleButtonStyle}>My</ToggleButton>
-        <ToggleButton value="all" sx={toggleButtonStyle}>All</ToggleButton>
+        <ToggleButton value='dfgdg' sx={toggleButtonStyle}>My</ToggleButton>
+        <ToggleButton value='' sx={toggleButtonStyle}>All</ToggleButton>
       </ToggleButtonGroup>
     </div>
   )

@@ -9,6 +9,7 @@ const profileSlice = createSlice({
             name: "",
             avatar: defaultAvatar,
             email: "",
+            _id: ""
         },
     },
     reducers: {

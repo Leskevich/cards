@@ -38,6 +38,17 @@ export const {setIsLoggedIn, setIsRegistration, setIsMail, setMail, changePasswo
 export const authSlice = slice.reducer
 
 //Thunks
+export const initialApp = () => async (dispatch: Dispatch) => {
+    try {
+        const res = await authAPI.me()
+        dispatch(setIsLoggedIn({isLoginIn: true}))
+        dispatch(setProfile(res))
+    } catch (e) {
+    } finally {
+        dispatch(setIsInitializedAC({isInitialized: true}))
+    }
+}
+
 export const isAuth = () => async (dispatch: Dispatch) => {
     dispatch(setAppStatusAC({status: "loading"}))
     try {
@@ -48,8 +59,6 @@ export const isAuth = () => async (dispatch: Dispatch) => {
         dispatch(setAppErrorAC({error: "добро пожаловать"}))
     } catch (e) {
         errorNetwork(e, dispatch)
-    } finally {
-        dispatch(setIsInitializedAC({isInitialized: true}))
     }
 }
 export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispatch) => {

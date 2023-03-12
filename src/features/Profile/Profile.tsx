@@ -6,7 +6,6 @@ import changeAvatarImage from "../../assets/img/changeAvatar.png"
 import defaultAvatar from "../../assets/img/default-avatar.png"
 import {Navigate} from "react-router-dom"
 import {isAuth, logoutThunk, setNewUserNameThunk} from "../auth/auth-slice"
-import {CircularProgress} from "@mui/material"
 import {useAppSelector} from "../../common/hook/useSelect"
 import {useAppDispatch} from "../../common/hook/useDispatch"
 import {PATH} from "../../common/constans/path"
@@ -20,19 +19,11 @@ export const Profile = React.memo(() => {
 
     const dispatch = useAppDispatch()
 
-    if (!isLoggedIn) {
+    if (!isInitialized) {
         dispatch(isAuth())
     }
-
     if (!isLoggedIn) {
         return <Navigate to={PATH.LOGIN}/>
-    }
-    if (!isInitialized) {
-        return (
-            <div style={{position: "fixed", top: "30%", textAlign: "center", width: "100%"}}>
-                <CircularProgress/>
-            </div>
-        )
     }
 
     const setNewName = (title: string) => {

@@ -11,7 +11,9 @@ export const ToggleButtons = () => {
     event: React.MouseEvent<HTMLElement>,
     newAlignment: string,
   ) => {
-    setAlignment(newAlignment);
+    if (newAlignment){
+      setAlignment(newAlignment);
+    }
   };
   return (
     <div>

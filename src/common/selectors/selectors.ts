@@ -8,3 +8,6 @@ export const selectProfile = (state: StateType) => state.profile.profile
 export const selectEmail = (state: StateType) => state.auth.email
 export const selectIsEMail = (state: StateType) => state.auth.isEMail
 export const selectIsChangePassword = (state: StateType) => state.auth.isChangePassword
+//for filter
+export const selectMax = (state: StateType) => state.filter.max
+export const selectMin = (state: StateType) => state.filter.min

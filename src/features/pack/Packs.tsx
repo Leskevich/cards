@@ -1,5 +1,5 @@
 import React from 'react';
-import {PackFilter} from "./PackFilter";
+import {PackFilter} from "./packFilter/PackFilter";
 
 export const Packs = () => {
   return (

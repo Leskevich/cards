@@ -1,0 +1,5 @@
+@import "../../scss/formStyles";
+
+.textSearch{
+  @include textPackFilter
+}

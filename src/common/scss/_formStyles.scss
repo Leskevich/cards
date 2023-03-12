@@ -103,4 +103,11 @@
   text-decoration: underline;
 }
 
+@mixin textPackFilter{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+}
+
 

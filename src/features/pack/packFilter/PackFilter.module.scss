@@ -1,0 +1,16 @@
+.packFilterContainer{
+  display: flex;
+  margin-top: 50px;
+  .search{
+    margin-right: 24px;
+  }
+  .toggleButtons{
+    margin-right: 48px;
+  }
+  .rangeSlider{
+    margin-right: 36px;
+  }
+  .resetFilter{
+    margin-top: 14px;
+  }
+}

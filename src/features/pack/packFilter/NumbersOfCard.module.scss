@@ -1,0 +1,23 @@
+@import "../../../common/scss/formStyles";
+
+.textRange{
+  @include textPackFilter
+}
+.NumberOfCardContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .numbers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #D9D9D9;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .slider{
+    margin: 0 12px 0 12px;
+  }
+}

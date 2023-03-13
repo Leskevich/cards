@@ -1,16 +1,21 @@
 import {instance} from "../../common/instance/instance"
 import {AxiosResponse} from "axios";
 
-export const cardsAPI = {
-    getPacksCards: (params:ParamsType) => {
+export const packAPI = {
+    getPacksCards: (params: ParamsType) => {
         return instance.get<ResponsePacksType>(`/cards/pack`, {params})
             .then(res => res.data)
+    },
+    createNewPack: (payload: createPackPayloadType) => {
+        return  instance.post<any, AxiosResponse<ResponseUpdatePack>, ResponsePackType<createPackPayloadType>>("/cards/pack", {
+            cardsPack: payload
+        })
     },
     removePack: (packId: string) => {
         return instance.delete(`/cards/pack?id=${packId}`)
     },
     updatePack: (payload: CardsPackType) => {
-        return instance.put<any, AxiosResponse<ResponseUpdatePack>, UpdatePackType>("/cards/pack", {cardsPack: payload})
+        return instance.put<any, AxiosResponse<ResponseUpdatePack>, ResponsePackType<CardsPackType>>("/cards/pack", {cardsPack: payload})
             .then(res => res.data)
     }
 
@@ -26,12 +31,18 @@ export type ParamsType = {
     user_id: string | null
 }
 
+export type createPackPayloadType = {
+    name: string
+    deckCover?: string
+    private?: boolean
+}
+
 export type CardsPackType = {
     _id: string;
     name: string;
 }
-export type UpdatePackType = {
-    cardsPack: CardsPackType;
+export type ResponsePackType<T> = {
+    cardsPack: T;
 }
 
 

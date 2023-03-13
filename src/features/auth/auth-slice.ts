@@ -20,6 +20,7 @@ const slice = createSlice({
         isEMail: false,
         email: "",
         isChangePassword: false,
+        userID: ''
     },
     reducers: {
         setIsRegistration(state, action: PayloadAction<{ isRegister: boolean }>) {
@@ -37,10 +38,13 @@ const slice = createSlice({
         changePassword(state, action: PayloadAction<{ isChangePassword: boolean }>) {
             state.isChangePassword = action.payload.isChangePassword
         },
+        setUserId: (state, action: PayloadAction<{ UserID: string }>) => {
+            state.userID = action.payload.UserID
+        }
     },
 })
 
-export const {setIsLoggedIn, setIsRegistration, setIsMail, setMail, changePassword} = slice.actions
+export const {setIsLoggedIn, setIsRegistration, setIsMail, setMail, changePassword, setUserId} = slice.actions
 export const authSlice = slice.reducer
 
 //Thunks
@@ -70,10 +74,11 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
 export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
     dispatch(setAppStatusAC({status: "loading"}))
     try {
-        const response = await authAPI.login(data)
-        dispatch(setProfile(response))
+        const res = await authAPI.login(data)
+        dispatch(setProfile(res))
         dispatch(setIsLoggedIn({isLoginIn: true}))
         dispatch(setIsRegistration({isRegister: true}))
+        dispatch(setUserId({UserID: res._id}))
         dispatch(setAppStatusAC({status: "succeeded"}))
         dispatch(setAppErrorAC({error: "You are logged in"}))
     } catch (e) {

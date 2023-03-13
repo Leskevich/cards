@@ -38,6 +38,7 @@ export const TablePacks = () => {
 
                         <TableCell align="left" sx={{padding: 0}}>
                             Last Updated
+                            <SuperSort value={"updated"} onChange={setSort}/>
                         </TableCell>
 
                         <TableCell align="left" sx={{padding: 0}}>

@@ -25,7 +25,6 @@ export const Pages = () => {
         <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
         <Route path={'/packs'} element={<PacksPage />} />
         <Route path={"*"} element={<Error404 />} />
-
       </Routes>
     </div>
   )

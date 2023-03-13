@@ -2,16 +2,7 @@ import {instance} from "../../common/instance/instance"
 import {AxiosResponse} from "axios";
 
 export const cardsAPI = {
-    getPacksCards: () => {
-        const params = {
-            packName: null,
-            min: null,
-            max: null,
-            sortPacks: null,
-            page: 1,
-            pageCount: 8,
-            user_id: "6400c86b1b8b2e36c43f9fd2",
-        }
+    getPacksCards: (params:ParamsType) => {
         return instance.get<ResponsePacksType>(`/cards/pack`, {params})
             .then(res => res.data)
     },
@@ -20,15 +11,25 @@ export const cardsAPI = {
     },
     updatePack: (payload: CardsPackType) => {
         return instance.put<any, AxiosResponse<ResponseUpdatePack>, UpdatePackType>("/cards/pack", {cardsPack: payload})
-            .then(res=>res.data)
+            .then(res => res.data)
     }
 
 }
+
+export type ParamsType = {
+    packName: string | null
+    min: string | null
+    max: string | null
+    sortPacks: string
+    page: string | null
+    pageCount: string | null
+    user_id: string | null
+}
+
 export type CardsPackType = {
     _id: string;
     name: string;
 }
-
 export type UpdatePackType = {
     cardsPack: CardsPackType;
 }

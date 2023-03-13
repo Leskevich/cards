@@ -10,6 +10,4 @@ export const selectIsEMail = (state: StateType) => state.auth.isEMail
 export const selectIsChangePassword = (state: StateType) => state.auth.isChangePassword
 //for filter
 export const selectFilter = (state: StateType) => state.filter
-export const selectMax = (state: StateType) => state.filter.max
-export const selectMin = (state: StateType) => state.filter.min
 export const selectUserId = (state: StateType) => state.profile.profile._id

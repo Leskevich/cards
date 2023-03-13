@@ -52,7 +52,7 @@ export const PackFilter = () => {
             name={'search'}
             control={control}
             render={({field}) => (
-              <Search {...field} length={'413px'}/>
+              <Search {...field} field={field} length={'413px'}/>
             )}
           />
         </div>

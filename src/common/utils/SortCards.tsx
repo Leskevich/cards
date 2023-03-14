@@ -10,6 +10,7 @@ export type SuperSortPropsType = {
 
 export const SuperSort = (props: SuperSortPropsType) => {
     const {value, onChange} = props
+    console.log(value)
     const sortPacks = useAppSelector(state => state.packs.params.sortPacks)
 
     const pureChange = (sortPacks: string, down: string, up: string) => {

@@ -15,7 +15,7 @@ export type PackFilter = {
   packName: string;
   userId: string;
   range: Array<number>;
-  //sortpack
+  sortPacks: string
 }
 
 export const PackFilter = () => {
@@ -28,7 +28,7 @@ export const PackFilter = () => {
       packName: filter.packName,
       userId: filter.userId,
       range: [filter.min, filter.max],
-      // sortPack: filter.sortPack,
+      sortPacks: filter.sortPacks
     },
     mode: "onSubmit"
   });
@@ -41,7 +41,7 @@ export const PackFilter = () => {
       userId: data.userId,
       min: data.range[0],
       max: data.range[1],
-      // sortPack: filter.sortPack,
+      sortPacks: data.sortPacks
 
     }));
 
@@ -53,7 +53,7 @@ export const PackFilter = () => {
       ...userId,
       min: `${data.range[0]}`,
       max: `${data.range[1]}`,
-      // sortPack: data.sortPack
+      sortPacks: data.sortPacks
     })
   };
 
@@ -62,10 +62,15 @@ export const PackFilter = () => {
     return subscription.unsubscribe;
   }, [watch, getValues])
 
+  console.log(filter.sortPacks)
+  console.log(getValues())
+
   useEffect(() => {
-    dispatch(getPacksTC(getValues()));
-//function для начальных квери
-  }, [ getValues]);  //filter.sortPack,
+    onSubmit({ packName: filter.packName,
+      userId: filter.userId,
+      range: [filter.min, filter.max],
+      sortPacks: filter.sortPacks})
+  }, [getValues, filter.sortPacks]);  //filter.sortPack,
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

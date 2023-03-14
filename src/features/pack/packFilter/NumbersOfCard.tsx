@@ -8,6 +8,10 @@ type NumbersOfCard = {
 }
 
 export const NumbersOfCard: React.FC<NumbersOfCard> = ({field}) => {
+  // const handle = (event: any, value: number) => {
+  //   field.onChange(value)
+  //   console.log(value)
+  // }
   return (
     <div>
       <div className={style.textRange}>Number of cards</div>
@@ -17,6 +21,7 @@ export const NumbersOfCard: React.FC<NumbersOfCard> = ({field}) => {
           <Slider
             {...field}
             max={95}
+            // onChangeCommitted={handle}
           />
         </Box>
         <div className={style.numbers}>{field.value[1]}</div>

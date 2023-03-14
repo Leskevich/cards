@@ -9,7 +9,7 @@ const initialState = {
   userId: '',
   min: 2,
   max: 10,
-  sortPack: 0,
+  sortPacks: '0updated'
 }
 
 const slice = createSlice({
@@ -28,8 +28,6 @@ const slice = createSlice({
 
 export const getPacksTC = (values: PackFilter) => async (dispatch: Dispatch) => {
   const response = await packsAPI.getPacksCards(values);
-  console.log(values)
-  console.log(response)
   dispatch(setPacksAC(response.cardPacks))
 }
 

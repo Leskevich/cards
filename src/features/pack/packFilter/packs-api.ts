@@ -10,7 +10,7 @@ export const packsAPI = {
         min: data.range[0],
         max: data.range[1],
         pageCount:"8",
-        //sortpack
+        sortPacks: data.sortPacks
       }
     })
     return response.data;

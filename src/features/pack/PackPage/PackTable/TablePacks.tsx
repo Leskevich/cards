@@ -9,6 +9,7 @@ import {useAppDispatch} from "../../../../common/hook/useDispatch";
 import {Coloda} from "./Coloda";
 import {SuperSort} from "../../../../common/utils/SortCards";
 import {setSortPack} from "../../cards-slice";
+import {SortSv} from "./SortSv";
 
 
 export const TablePacks = () => {
@@ -39,6 +40,7 @@ export const TablePacks = () => {
                         <TableCell align="left" sx={{padding: 0}}>
                             Last Updated
                             <SuperSort value={"updated"} onChange={setSort}/>
+                            <SortSv/>
                         </TableCell>
 
                         <TableCell align="left" sx={{padding: 0}}>

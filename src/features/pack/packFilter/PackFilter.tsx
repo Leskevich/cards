@@ -70,7 +70,7 @@ export const PackFilter = () => {
       userId: filter.userId,
       range: [filter.min, filter.max],
       sortPacks: filter.sortPacks})
-  }, [getValues, filter.sortPacks]);  //filter.sortPack,
+  }, [getValues, filter.sortPacks]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

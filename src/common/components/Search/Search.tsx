@@ -3,36 +3,33 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import {ReactComponent as Loupe} from '../../../assets/img/Union.svg';
 import style from './Search.module.scss'
+import {useAppDispatch} from "../../hook/useDispatch";
+import {setParams} from "../../../features/pack/cards-slice";
+import {useAppSelector} from "../../hook/useSelect";
 
-type SearchType = {
-  length: string
-  field: any;
-}
-
-export const Search: React.FC<SearchType> = ({length, field}) => {
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    field.onChange(e.currentTarget.value)
-  }
-
-  return (
-    <div>
-      <div className={style.textSearch}>Search</div>
-      <TextField
-        {...field}
-        placeholder={'Provide your text'}
-        size={'small'}
-        sx={{width: length}}
-        onChange={handleChange}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Loupe/>
-            </InputAdornment>
-          ),
-        }}
-        variant="outlined"
-      />
-    </div>
-  )
+export const Search = () => {
+    const dispatch = useAppDispatch()
+    const packName = useAppSelector(state => state.packs.params.packName)
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        dispatch(setParams({packName: e.currentTarget.value}))
+    }
+    return (
+        <div>
+            <div className={style.textSearch}>Search</div>
+            <TextField
+                placeholder={'Provide your text'}
+                size={'small'}
+                value={packName}
+                onChange={onChangeHandler}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            <Loupe/>
+                        </InputAdornment>
+                    ),
+                }}
+                variant="outlined"
+            />
+        </div>
+    )
 }

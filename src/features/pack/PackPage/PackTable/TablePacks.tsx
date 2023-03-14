@@ -8,13 +8,13 @@ import Paper from '@mui/material/Paper';
 import {useAppDispatch} from "../../../../common/hook/useDispatch";
 import {Coloda} from "./Coloda";
 import {SuperSort} from "../../../../common/utils/SortCards";
-import {setSortPack} from "../../cards-slice";
+import {setParams} from "../../cards-slice";
 
 
 export const TablePacks = () => {
     const dispatch = useAppDispatch()
     const setSort = (sortPack: string) => {
-        dispatch(setSortPack({sortPack}))
+        dispatch(setParams({sortPacks: sortPack}))
     }
 
     return (

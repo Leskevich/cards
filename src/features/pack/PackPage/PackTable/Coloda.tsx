@@ -13,11 +13,11 @@ import style from './Coloda.module.scss'
 
 export const Coloda = () => {
         const packsCards = useAppSelector(state => state.packs.packs)
-        const sortPack = useAppSelector(state => state.packs.params)
+        const params = useAppSelector(state => state.packs.params)
         const userId = useAppSelector(state => state.auth.userID)
         useEffect(() => {
             dispatch(setPacks())
-        }, [sortPack])
+        }, [params])
 
         const dispatch = useAppDispatch()
         const removePacksHandler = (packId: string) => {

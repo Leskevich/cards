@@ -3,7 +3,7 @@ import {TablePacks} from "./PackTable/TablePacks";
 import style from './PackPage.module.scss'
 import {useAppDispatch} from "../../../common/hook/useDispatch";
 import {createNewPack} from "../cards-slice";
-import {PackFilter} from "../packFilter/PackFilter";
+import {PackFilter} from "../fiterBar/PackFilter";
 
 
 export const PacksPage = () => {

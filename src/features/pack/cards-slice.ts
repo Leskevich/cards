@@ -12,9 +12,9 @@ const packsSlice = createSlice({
     initialState: {
         packs: [] as Array<PackCardsType>,
         params: {
-            packName: null,
-            min: null,
-            max: null,
+            packName: '',
+            min: '0',
+            max: '100',
             sortPacks: '',
             page: "3",
             pageCount: "8",
@@ -28,17 +28,16 @@ const packsSlice = createSlice({
         updateAC: (state, action: PayloadAction<PackCardsType>) => {
             state.packs = state.packs.map(p => p._id === action.payload._id ? {...p, name: action.payload.name} : p)
         },
-        setSortPack: (state, action: PayloadAction<{ sortPack: string }>) => {
-            state.params.sortPacks = action.payload.sortPack
+        setParams: (state, action: PayloadAction<ParamsType>) => {
+            state.params = {...state.params, ...action.payload}
         }
-
     },
 
 })
 
 
 export const packsReducer = packsSlice.reducer
-export const {setPacksAC, updateAC, setSortPack} = packsSlice.actions
+export const {setPacksAC, setParams} = packsSlice.actions
 
 
 export const setPacks = () => async (dispatch: Dispatch, getState: () => StateType) => {

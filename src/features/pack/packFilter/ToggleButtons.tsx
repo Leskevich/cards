@@ -1,38 +1,28 @@
 import React from 'react'
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import {toggleButtonStyle} from "./toggleButtonStyle";
 import style from "./ToggleButtons.module.scss"
+import {useAppDispatch} from "../../../common/hook/useDispatch";
+import {setParams} from "../cards-slice";
+import {useAppSelector} from "../../../common/hook/useSelect";
 
-type ToggleButtons = {
-  field: any;
-}
 
-export const ToggleButtons: React.FC<ToggleButtons> = ({field}) => {
-
-  // const userID = useAppSelector(selectUserId)
-  // const userID = useAppSelector(state => state.packs._id)
-  // const userID = useAppSelector(state => state.filter.userId)
-  // console.log(userID)
-
-  const handleChange = (event: React.MouseEvent<HTMLElement>, value: string) => {
-    if (value !== null) {
-      field.onChange(value);
+export const ToggleButtons = () => {
+    const dispatch = useAppDispatch()
+    const user_id = useAppSelector(state => state.auth.userID)
+    const handleChangeMyPack = (value: string) => {
+        dispatch(setParams({user_id: value}))
     }
-  }
 
-  return (
-    <div>
-      <div className={style.textToggleButton}>Show packs cards</div>
-      <ToggleButtonGroup
-        {...field}
-        exclusive
-        onChange={handleChange}
-        aria-label="Platform"
-      >
-        <ToggleButton value='jgvg' sx={toggleButtonStyle}>My</ToggleButton>
-        <ToggleButton value='' sx={toggleButtonStyle}>All</ToggleButton>
-      </ToggleButtonGroup>
-    </div>
-  )
+    return (
+        <div>
+            <div className={style.textToggleButton}>Show packs cards</div>
+            <ToggleButton onClick={() => handleChangeMyPack(user_id)} value='My' sx={toggleButtonStyle}>
+                My
+            </ToggleButton>
+            <ToggleButton onClick={() => handleChangeMyPack('')} value='All' sx={toggleButtonStyle}>
+                All
+            </ToggleButton>
+        </div>
+    )
 }

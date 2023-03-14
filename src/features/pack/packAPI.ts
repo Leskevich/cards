@@ -22,13 +22,13 @@ export const packAPI = {
 }
 
 export type ParamsType = {
-    packName: string | null
-    min: string | null
-    max: string | null
-    sortPacks: string
-    page: string | null
-    pageCount: string | null
-    user_id: string | null
+    packName?: string
+    min?: string
+    max?: string
+    sortPacks?: string
+    page?: string
+    pageCount?: string
+    user_id?: string
 }
 
 export type createPackPayloadType = {

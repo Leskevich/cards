@@ -4,13 +4,13 @@ import {EditableSpan} from "../../common/components/EditableSpan/EditableSpan"
 import Button from "@mui/material/Button"
 import changeAvatarImage from "../../assets/img/changeAvatar.png"
 import defaultAvatar from "../../assets/img/default-avatar.png"
-import {Navigate} from "react-router-dom"
+import {Navigate, NavLink} from "react-router-dom"
 import {isAuth, logoutThunk, setNewUserNameThunk} from "../auth/auth-slice"
 import {CircularProgress} from "@mui/material"
 import {useAppSelector} from "../../common/hook/useSelect"
 import {useAppDispatch} from "../../common/hook/useDispatch"
 import {PATH} from "../../common/constans/path"
-import {selectIsInitialized, selectIsLoggedIn, selectProfile, selectStatus} from "../../common/selectors/selectors";
+import {selectIsLoggedIn, selectProfile, selectStatus} from "../../common/selectors/selectors";
 import {STATUSES} from "../../app/app-slice";
 
 export const Profile = () => {
@@ -44,6 +44,7 @@ export const Profile = () => {
 
     return (
         <div className={style.profileParent}>
+            <NavLink to={"/packs"}>+++</NavLink>
             <p className={style.title}>Personal Information</p>
             <div className={style.image} style={{backgroundImage: ` url("${defaultAvatar}")`}}>
                 <div className={style.changeAvatar} style={{backgroundImage: `url(${changeAvatarImage})`}}></div>

@@ -22,6 +22,7 @@ const slice = createSlice({
         isEMail: false,
         email: "",
         isChangePassword: false,
+        userID: ''
     },
     reducers: {
         setIsRegistration(state, action: PayloadAction<{ isRegister: boolean }>) {
@@ -39,10 +40,13 @@ const slice = createSlice({
         changePassword(state, action: PayloadAction<{ isChangePassword: boolean }>) {
             state.isChangePassword = action.payload.isChangePassword
         },
+        setUserId: (state, action: PayloadAction<{ UserID: string }>) => {
+            state.userID = action.payload.UserID
+        }
     },
 })
 
-export const {setIsLoggedIn, setIsRegistration, setIsMail, setMail, changePassword} = slice.actions
+export const {setIsLoggedIn, setIsRegistration, setIsMail, setMail, changePassword, setUserId} = slice.actions
 export const authSlice = slice.reducer
 
 //Thunks
@@ -52,7 +56,6 @@ export const isAuth = () => async (dispatch: Dispatch) => {
         const res = await authAPI.me()
         dispatch(setIsLoggedIn({isLoginIn: true}))
         dispatch(setProfile(res.data))
-        console.log(res.data)
         dispatch(setAppStatusAC({status: "succeeded"}))
         dispatch(setAppErrorAC({error: "Welcome!"}))
     } catch (e) {
@@ -73,17 +76,13 @@ export const registerTC = (data: RegisterPayloadType) => async (dispatch: Dispat
 export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
     dispatch(setAppStatusAC({status: "loading"}))
     try {
-        const response = await authAPI.login(data)
-        // console.log(response)
-        dispatch(setProfile(response))
+        const res = await authAPI.login(data)
+        dispatch(setProfile(res))
         dispatch(setIsLoggedIn({isLoginIn: true}))
         dispatch(setIsRegistration({isRegister: true}))
+        dispatch(setUserId({UserID: res._id}))
         dispatch(setAppStatusAC({status: "succeeded"}))
         dispatch(setAppErrorAC({error: "You are logged in"}))
-
-        dispatch(setUserId({_id: response._id}))
-        dispatch(setValueFilter({userId: response._id}))
-        console.log(response._id)
     } catch (e) {
         errorNetwork(e, dispatch)
     }

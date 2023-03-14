@@ -1,19 +1,19 @@
 import {AxiosResponse} from "axios"
-import {instanceHeroku} from "../../common/instance/instance"
+import {instance, instanceHeroku} from "../../common/instance/instance"
 
 export const authAPI = {
     register(payload: RegisterPayloadType) {
-        return instanceHeroku.post("auth/register", payload).then((res) => res.data)
+        return instance.post("auth/register", payload).then((res) => res.data)
     },
     login(payload: LoginPayloadType) {
-        return instanceHeroku.post<any, AxiosResponse<ProfileType>, LoginPayloadType>("auth/login", payload)
+        return instance.post<any, AxiosResponse<ProfileType>, LoginPayloadType>("auth/login", payload)
             .then((res) => res.data)
     },
     logOut() {
         return instanceHeroku.delete<{ info: string }>("auth/me")
     },
     me() {
-        return instanceHeroku.post("auth/me")
+        return instance.post("auth/me")
     },
     setNewUserName(payload: UpdateUserType) {
         return instanceHeroku.put<any, AxiosResponse<UpdateResponseUserType>, UpdateUserType>(
@@ -36,7 +36,7 @@ export type ProfileType = {
     email: string
     name: string
     avatar: string
-    _id: string
+    _id:string
 }
 export type RegisterPayloadType = {
     email: string

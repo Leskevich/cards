@@ -42,6 +42,7 @@ export const PackFilter = () => {
       min: data.range[0],
       max: data.range[1],
       // sortPack: filter.sortPack,
+
     }));
 
     //function

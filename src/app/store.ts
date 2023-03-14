@@ -6,6 +6,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import {filterReducer} from "../features/pack/packFilter/filter-slice";
 import {packsReducer} from "../features/pack/cards-slice";
 
+
 const rootReducer = combineReducers({
   app: appSlice,
   profile: profileReducer,

@@ -9,9 +9,9 @@ import TableBody from '@mui/material/TableBody/TableBody';
 import {useAppDispatch} from "../../../../common/hook/useDispatch";
 import {removePack, setPacks, updatePack} from "../../cards-slice";
 import {CardsPackType} from "../../packAPI";
-import style from './Pack.module.scss'
+import style from './Coloda.module.scss'
 
-export const Packs = () => {
+export const Coloda = () => {
         const packsCards = useAppSelector(state => state.packs.packs)
         const sortPack = useAppSelector(state => state.packs.params)
         const userId = useAppSelector(state => state.auth.userID)

@@ -10,7 +10,7 @@ export const authAPI = {
             .then((res) => res.data)
     },
     logOut() {
-        return instanceHeroku.delete<{ info: string }>("auth/me")
+        return instance.delete<{ info: string }>("auth/me")
     },
     me() {
         return instance.post("auth/me")

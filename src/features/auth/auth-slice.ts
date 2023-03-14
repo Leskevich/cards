@@ -1,18 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {Dispatch} from "redux"
-import {
-    authAPI,
-    ForgotPasswordType,
-    LoginPayloadType,
-    RegisterPayloadType,
-    SetNewPasswordType,
-} from "./auth-api"
+import {authAPI, ForgotPasswordType, LoginPayloadType, RegisterPayloadType, SetNewPasswordType,} from "./auth-api"
 import {setAppErrorAC, setAppStatusAC} from "../../app/app-slice"
 import {setProfile} from "../Profile/profile-slice"
 import {errorNetwork} from "../../common/utils/errorNetwork"
 import {forgotPayload} from "../../common/utils/forgotPayload"
-import {setUserId} from "../pack/cards-slice";
-import {setValueFilter} from "../pack/packFilter/filter-slice";
 
 const slice = createSlice({
     name: "auth",

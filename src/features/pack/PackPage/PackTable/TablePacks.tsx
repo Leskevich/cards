@@ -6,7 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useAppDispatch} from "../../../../common/hook/useDispatch";
-import {Packs} from "./Packs";
+import {Coloda} from "./Coloda";
 import {SuperSort} from "../../../../common/utils/SortCards";
 import {setSortPack} from "../../cards-slice";
 
@@ -50,7 +50,7 @@ export const TablePacks = () => {
                         </TableCell>
                     </TableRow>
                 </TableHead>
-                <Packs/>
+                <Coloda/>
             </Table>
         </TableContainer>
     );

@@ -9,8 +9,8 @@ import style from "./Pages.module.scss"
 import { PATH } from "../../common/constans/path"
 import { CheckEmail } from "../../features/auth/CheckEmail/CheckEmail"
 import { Profile } from "../../features/Profile/Profile"
-import { PacksPage } from "../../features/Cards/PacksPage/PacksPage"
-import {PacksPage} from "../../features/pack/PacksPage";
+import { PacksPage } from "../../features/pack/PackPage/PacksPage"
+
 
 export const Pages = () => {
   return (

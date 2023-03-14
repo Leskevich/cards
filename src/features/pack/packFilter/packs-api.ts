@@ -9,6 +9,7 @@ export const packsAPI = {
         userId: data.userId || null,
         min: data.range[0],
         max: data.range[1],
+        pageCount:"8",
         //sortpack
       }
     })

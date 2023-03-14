@@ -11,6 +11,8 @@ import {setAppErrorAC, setAppStatusAC} from "../../app/app-slice"
 import {setProfile} from "../Profile/profile-slice"
 import {errorNetwork} from "../../common/utils/errorNetwork"
 import {forgotPayload} from "../../common/utils/forgotPayload"
+import {setUserId} from "../pack/cards-slice";
+import {setValueFilter} from "../pack/packFilter/filter-slice";
 
 const slice = createSlice({
     name: "auth",
@@ -72,11 +74,16 @@ export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
     dispatch(setAppStatusAC({status: "loading"}))
     try {
         const response = await authAPI.login(data)
+        // console.log(response)
         dispatch(setProfile(response))
         dispatch(setIsLoggedIn({isLoginIn: true}))
         dispatch(setIsRegistration({isRegister: true}))
         dispatch(setAppStatusAC({status: "succeeded"}))
         dispatch(setAppErrorAC({error: "You are logged in"}))
+
+        dispatch(setUserId({_id: response._id}))
+        dispatch(setValueFilter({userId: response._id}))
+        console.log(response._id)
     } catch (e) {
         errorNetwork(e, dispatch)
     }

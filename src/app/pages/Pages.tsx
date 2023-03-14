@@ -9,7 +9,7 @@ import style from "./Pages.module.scss"
 import { PATH } from "../../common/constans/path"
 import { CheckEmail } from "../../features/auth/CheckEmail/CheckEmail"
 import { Profile } from "../../features/Profile/Profile"
-import {Packs} from "../../features/pack/Packs";
+import {PacksPage} from "../../features/pack/PacksPage";
 
 export const Pages = () => {
   return (
@@ -22,7 +22,7 @@ export const Pages = () => {
         <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
         <Route path={PATH.PROFILE} element={<Profile />} />
         <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
-        <Route path={PATH.PACKS} element={<Packs />} />
+        <Route path={PATH.PACKS} element={<PacksPage />} />
         <Route path={"*"} element={<Error404 />} />
       </Routes>
     </div>

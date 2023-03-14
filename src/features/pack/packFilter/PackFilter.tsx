@@ -8,48 +8,70 @@ import {SubmitHandler, useForm, Controller} from "react-hook-form";
 import {useAppSelector} from "../../../common/hook/useSelect";
 import {selectFilter} from "../../../common/selectors/selectors";
 import {useAppDispatch} from "../../../common/hook/useDispatch";
-import {setValueFilter} from "./filter-slice";
+import {getPacksTC, setValueFilter} from "./filter-slice";
+import { useSearchParams } from "react-router-dom";
 
-type PackFilter = {
-  search: string;
+export type PackFilter = {
+  packName: string;
   userId: string;
   range: Array<number>;
+  //sortpack
 }
 
 export const PackFilter = () => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(selectFilter)
+  let [searchParams, setSearchParams] = useSearchParams();
 
-  const {control, handleSubmit, watch} = useForm<PackFilter>({
+  const {control, handleSubmit, watch, getValues} = useForm<PackFilter>({
     defaultValues: {
-      search: filter.search,
+      packName: filter.packName,
       userId: filter.userId,
-      range: [filter.min, filter.max]
+      range: [filter.min, filter.max],
+      // sortPack: filter.sortPack,
     },
     mode: "onSubmit"
   });
 
+
   const onSubmit: SubmitHandler<PackFilter> = (data) => {
+    dispatch(getPacksTC(data));
     dispatch(setValueFilter({
-      search: data.search,
+      packName: data.packName,
       userId: data.userId,
       min: data.range[0],
       max: data.range[1],
-    }))
-    console.log(data)
+      // sortPack: filter.sortPack,
+    }));
+
+    //function
+    const packName = data.packName ? {packName: data.packName} : null;
+    const userId = data.userId ? {userId: data.userId} : null;
+    setSearchParams({
+      ...packName,
+      ...userId,
+      min: `${data.range[0]}`,
+      max: `${data.range[1]}`,
+      // sortPack: data.sortPack
+    })
   };
 
   useEffect(() => {
     const subscription = watch((values) => onSubmit(values as PackFilter));
     return subscription.unsubscribe;
-  }, [watch])
+  }, [watch, getValues])
+
+  useEffect(() => {
+    dispatch(getPacksTC(getValues()));
+//function для начальных квери
+  }, [ getValues]);  //filter.sortPack,
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={style.packFilterContainer}>
         <div className={style.search}>
           <Controller
-            name={'search'}
+            name={'packName'}
             control={control}
             render={({field}) => (
               <Search {...field} field={field} length={'413px'}/>
@@ -73,7 +95,9 @@ export const PackFilter = () => {
           <ResetFilter/>
         </div>
       </div>
-      <button type={'submit'} >GO</button>
+
+
+
     </form>
 
   )

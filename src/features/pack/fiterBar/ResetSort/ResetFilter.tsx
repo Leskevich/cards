@@ -1,6 +1,6 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
-import {ReactComponent as ResetFilterIcon} from '../../../assets/img/resetFilter.svg';
+import {ReactComponent as ResetFilterIcon} from '../../../../assets/img/resetFilter.svg';
 
 
 export const ResetFilter = () => {

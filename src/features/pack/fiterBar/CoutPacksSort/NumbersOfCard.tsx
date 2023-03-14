@@ -2,9 +2,9 @@ import React, {useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import style from "./NumbersOfCard.module.scss"
-import {useAppDispatch} from "../../../common/hook/useDispatch";
-import {setParams} from "../cards-slice";
-import {useDebounce} from "../../../common/hook/useDebounce";
+import {useAppDispatch} from "../../../../common/hook/useDispatch";
+import {setParams} from "../../cards-slice";
+import {useDebounce} from "../../../../common/hook/useDebounce";
 
 
 export const NumbersOfCard = () => {

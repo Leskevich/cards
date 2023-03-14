@@ -1,8 +1,8 @@
 import React from 'react';
 import {Search} from "../../../common/components/Search/Search";
-import style from '../packFilter/PackFilter.module.scss'
-import { ToggleButtons } from '../packFilter/ToggleButtons';
-import {NumbersOfCard} from "../packFilter/NumbersOfCard";
+import style from './PackFilter.module.scss'
+import { ToggleButtons } from './ButtonSornPack/ToggleButtons';
+import {NumbersOfCard} from "./CoutPacksSort/NumbersOfCard";
 
 export type PackFilter = {
     search: string

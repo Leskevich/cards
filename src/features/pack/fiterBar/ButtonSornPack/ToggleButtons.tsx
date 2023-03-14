@@ -2,9 +2,9 @@ import React from 'react'
 import ToggleButton from "@mui/material/ToggleButton";
 import {toggleButtonStyle} from "./toggleButtonStyle";
 import style from "./ToggleButtons.module.scss"
-import {useAppDispatch} from "../../../common/hook/useDispatch";
-import {setParams} from "../cards-slice";
-import {useAppSelector} from "../../../common/hook/useSelect";
+import {useAppDispatch} from "../../../../common/hook/useDispatch";
+import {setParams} from "../../cards-slice";
+import {useAppSelector} from "../../../../common/hook/useSelect";
 
 
 export const ToggleButtons = () => {

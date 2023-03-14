@@ -4,7 +4,6 @@ import {ReactComponent as ResetFilterIcon} from '../../../../assets/img/resetFil
 
 
 export const ResetFilter = () => {
-
   const resetHandler = () => {
   }
 

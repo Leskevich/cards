@@ -1,22 +1,22 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {Dispatch} from "redux";
-import {packsAPI} from "./packs-api";
+import {packsAPI, ParamsType} from "./packs-api";
 import {PackFilter} from "./PackFilter";
 import {setPacksAC} from "../cards-slice";
 
 const initialState = {
   packName: '',
-  userId: '',
+  user_id: localStorage.getItem('userId') || '',
   min: 2,
   max: 10,
-  sortPacks: '0updated'
+  sortPacks: '0updated',
+  pageCount: '8'
 }
 
 const slice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    clear(){return initialState},
     setValueFilter(state, action: PayloadAction<{[key: string]: string | number}>){
       return {
         ...state,
@@ -26,10 +26,10 @@ const slice = createSlice({
   }
 })
 
-export const getPacksTC = (values: PackFilter) => async (dispatch: Dispatch) => {
+export const getPacksTC = (values: ParamsType) => async (dispatch: Dispatch) => {
   const response = await packsAPI.getPacksCards(values);
   dispatch(setPacksAC(response.cardPacks))
 }
 
 export const filterReducer = slice.reducer
-export const {clear, setValueFilter} = slice.actions
+export const {setValueFilter} = slice.actions

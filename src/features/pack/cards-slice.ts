@@ -41,22 +41,22 @@ export const packsReducer = packsSlice.reducer
 export const {setPacksAC, updateAC, setSortPack} = packsSlice.actions
 
 
-export const setPacks = () => async (dispatch: Dispatch, getState: () => StateType) => {
-    const params: ParamsType = {...getState().packs.params}
-    dispatch(setAppStatusAC({status: STATUSES.loading}))
-    try {
-        const res = await packAPI.getPacksCards(params)
-        dispatch(setPacksAC(res.cardPacks))
-        dispatch(setAppStatusAC({status: STATUSES.succeeded}))
-    } catch (e) {
-        errorNetwork(e, dispatch)
-    }
-}
+// export const setPacks = () => async (dispatch: Dispatch, getState: () => StateType) => {
+//     const params: ParamsType = {...getState().packs.params}
+//     dispatch(setAppStatusAC({status: STATUSES.loading}))
+//     try {
+//         const res = await packAPI.getPacksCards(params)
+//         dispatch(setPacksAC(res.cardPacks))
+//         dispatch(setAppStatusAC({status: STATUSES.succeeded}))
+//     } catch (e) {
+//         errorNetwork(e, dispatch)
+//     }
+// }
 export const createNewPack = (payload: createPackPayloadType) => async (dispatch: AppDispatch) => {
     dispatch(setAppStatusAC({status: STATUSES.loading}))
     try {
         const res = await packAPI.createNewPack(payload)
-        dispatch(setPacks())
+        //dispatch(setPacks())
         dispatch(setAppStatusAC({status: STATUSES.succeeded}))
     } catch (e) {
         errorNetwork(e, dispatch)
@@ -66,7 +66,7 @@ export const removePack = (packId: string) => async (dispatch: AppDispatch) => {
     dispatch(setAppStatusAC({status: STATUSES.loading}))
     try {
         const res = await packAPI.removePack(packId)
-        dispatch(setPacks())
+        //dispatch(setPacks())
         dispatch(setAppStatusAC({status: STATUSES.succeeded}))
     } catch (e) {
         errorNetwork(e, dispatch)
@@ -77,7 +77,7 @@ export const updatePack = (payload: CardsPackType) => async (dispatch: AppDispat
     dispatch(setAppStatusAC({status: STATUSES.loading}))
     try {
         const res = await packAPI.updatePack(payload)
-        dispatch(setPacks())
+        //dispatch(setPacks())
         // dispatch(updateAC(res.updatedCardsPack))
         dispatch(setAppStatusAC({status: STATUSES.succeeded}))
     } catch (e) {

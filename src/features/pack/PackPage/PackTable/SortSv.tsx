@@ -9,18 +9,13 @@ export const SortSv = () => {
   const dispatch = useAppDispatch();
   const sortPackFilter = useAppSelector(state => state.filter.sortPacks)
 
-  const update = (sortPackFilter: string) => {
-    if (sortPackFilter === '0updated') return '1updated'
-    if (sortPackFilter === '1updated') return '0updated'
-    return '1updated'
-}
-
   const onClickHandler = () => {
-    const res = update(sortPackFilter)
-    dispatch(setValueFilter({sortPacks: res}))
+    dispatch(setValueFilter({sortPacks: sortPackFilter === '1updated' ? '0updated' : '1updated'}))
   }
-  const icon = sortPackFilter === '1updated' ? downIcon : upIcon
+
   return (
-    <span onClick={onClickHandler}><img src={icon}/></span>
+    <span onClick={onClickHandler}>
+      <img src={sortPackFilter === '1updated' ? downIcon : upIcon}/>
+    </span>
   )
 }

@@ -2,15 +2,12 @@ import {instance} from "../../../common/instance/instance";
 import {PackFilter} from "./PackFilter";
 
 export const packsAPI = {
-  getPacksCards: async (data: PackFilter) => {
+  getPacksCards: async (data: ParamsType) => {
     const response = await instance.get<ResponsePacksType>(`/cards/pack`,{
       params: {
+        ...data,
         packName: data.packName || null,
-        userId: data.userId || null,
-        min: data.range[0],
-        max: data.range[1],
-        pageCount:"8",
-        sortPacks: data.sortPacks
+        user_id: data.user_id || null,
       }
     })
     return response.data;
@@ -19,10 +16,10 @@ export const packsAPI = {
 
 export type ParamsType = {
   packName: string | null
-  min: string | null
-  max: string | null
+  min: number | null
+  max: number | null
   sortPacks: string
-  page: string | null
+  //page: string | null
   pageCount: string | null
   user_id: string | null
 }

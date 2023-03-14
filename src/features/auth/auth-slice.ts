@@ -5,6 +5,7 @@ import {setAppErrorAC, setAppStatusAC} from "../../app/app-slice"
 import {setProfile} from "../Profile/profile-slice"
 import {errorNetwork} from "../../common/utils/errorNetwork"
 import {forgotPayload} from "../../common/utils/forgotPayload"
+import {setValueFilter} from "../pack/packFilter/filter-slice";
 
 const slice = createSlice({
     name: "auth",
@@ -14,7 +15,7 @@ const slice = createSlice({
         isEMail: false,
         email: "",
         isChangePassword: false,
-        userID: ''
+        userID: localStorage.getItem('userId') || ''
     },
     reducers: {
         setIsRegistration(state, action: PayloadAction<{ isRegister: boolean }>) {
@@ -69,6 +70,10 @@ export const login = (data: LoginPayloadType) => async (dispatch: Dispatch) => {
     dispatch(setAppStatusAC({status: "loading"}))
     try {
         const res = await authAPI.login(data)
+
+        localStorage.setItem('userId', res._id);
+        dispatch(setValueFilter({user_id: res._id}))
+
         dispatch(setProfile(res))
         dispatch(setIsLoggedIn({isLoginIn: true}))
         dispatch(setIsRegistration({isRegister: true}))

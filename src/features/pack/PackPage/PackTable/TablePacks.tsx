@@ -11,12 +11,11 @@ import {SuperSort} from "../../../../common/utils/SortCards";
 import {setSortPack} from "../../cards-slice";
 import {SortSv} from "./SortSv";
 
-
 export const TablePacks = () => {
-    const dispatch = useAppDispatch()
-    const setSort = (sortPack: string) => {
-        dispatch(setSortPack({sortPack}))
-    }
+    // const dispatch = useAppDispatch()
+    // const setSort = (sortPack: string) => {
+    //     dispatch(setSortPack({sortPack}))
+    // }
 
     return (
         <TableContainer component={Paper}>
@@ -28,18 +27,18 @@ export const TablePacks = () => {
                             sx={{padding: 0}}>
                             <div style={{marginLeft: 36}}>
                                 Name
-                                <SuperSort value={"name"} onChange={setSort}/>
+                                {/*<SuperSort value={"name"} onChange={setSort}/>*/}
                             </div>
                         </TableCell>
 
                         <TableCell align="left" sx={{padding: 0}}>
                             Cards
-                            <SuperSort value={"cardsCount"} onChange={setSort}/>
+                            {/*<SuperSort value={"cardsCount"} onChange={setSort}/>*/}
                         </TableCell>
 
                         <TableCell align="left" sx={{padding: 0}}>
                             Last Updated
-                            <SuperSort value={"updated"} onChange={setSort}/>
+                            {/*<SuperSort value={"updated"} onChange={setSort}/>*/}
                             <SortSv/>
                         </TableCell>
 
